@@ -9,8 +9,10 @@ function loginUserWithGoogle(){
 }
 
 function showSetGoalsScreen(){
+    work_on_task_section.style.display = 'none'
     login_screen.style.display = 'none'
     set_goal_screen.style.display = 'block'
+    refreshGoalsList()
 }
 
 function make_and_save_new_goal(goal_name){
@@ -68,6 +70,7 @@ function moveItem(from, to,array) {
 
 
 function showPlanSection(){
+    refreshTaskList()
     plan_section.style.display = 'block'
     prioritizesection.style.display = 'none'
     top_goal.forEach((element)=> element.innerText=main_goals_array[0].name)
@@ -105,5 +108,47 @@ function getCurrentDateAndTimeString(){
     return now.slice(4,24)
 }
 
+
+
+function convert_current_task_into_main_goal(){
+    
+    main_goals_array[0].tasks_array.forEach(task => {
+        if (task.name == current_task.innerText){
+            // add to main goal array
+            main_goals_array.push(task)
+            let index = main_goals_array[0].tasks_array.indexOf(task)
+            // remove from task array
+            main_goals_array[0].tasks_array.splice(index,1)
+            showSetGoalsScreen()
+        }
+    });
+
+
+
+}
+
+
+function getMainGoalsArray(){
+    let arraystring = localStorage.getItem('ga')
+    let main_g_arra=  JSON.parse(arraystring)
+    return main_g_arra
+}
+
+
+function saveWork(){
+    localStorage.setItem("ga",JSON.stringify(main_goals_array))
+}
+
+
+
+
+
+function currentTaskDone(){
+    main_goals_array[0].tasks_array.forEach(task => {
+        if (task.name == current_task.innerText){
+           
+        }
+    });
+}
 
 

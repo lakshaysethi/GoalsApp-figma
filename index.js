@@ -1,3 +1,8 @@
+main_goals_array = getMainGoalsArray()
+if (main_goals_array == undefined || main_goals_array == null){
+    main_goals_array = []
+}
+
 
 
 // add arrow to all prioritize goals
@@ -6,6 +11,8 @@
 
 if (!user_is_logged_in){
     showLoginScreen()
+}else{
+    showSetGoalsScreen()
 }
 
 login_button.addEventListener('click',()=>{
@@ -20,6 +27,7 @@ goal_input.addEventListener('keypress',(e)=>{
         goal_input.value=''
         refreshGoalsList()
     }
+    saveWork()
 })
 
 
@@ -37,7 +45,7 @@ task_input.addEventListener('keypress',(e)=>{
         refreshTaskList()
     }
         
-        
+    saveWork()   
 })
 
 
@@ -55,14 +63,20 @@ notes_input.addEventListener('keypress',(e)=>{
                 current_task_obj = task
             }
         });
-        current_task_obj.notes += ' '+ current_date_and_time + notes_input.value + '\n'
+        current_task_obj.notes +=  current_date_and_time +' '+ notes_input.value + '\n'
         notes_input.value=''
         notes_box.innerText = current_task_obj.notes
     }
         
-        
+    saveWork()
 })
 
 
+
+convert_into_goal_button.onclick = convert_current_task_into_main_goal
+
+
+
+done_button.onclick = currentTaskDone
 
 
