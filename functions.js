@@ -38,7 +38,7 @@ function showPrioritizeSection(){
         prioritizesection.style.display = 'block'
     }
     refreshPrioritizeGoalsList()
-
+    saveWork()
 }
 
 function refreshPrioritizeGoalsList(){
@@ -74,7 +74,7 @@ function showPlanSection(){
     plan_section.style.display = 'block'
     prioritizesection.style.display = 'none'
     top_goal.forEach((element)=> element.innerText=main_goals_array[0].name)
-
+    saveWork()
 }
 
 
@@ -99,6 +99,7 @@ function showWorkOnTaskSection(){
         current_task.innerText = main_goals_array[0].tasks_array[0].name
         notes_box.innerText = main_goals_array[0].tasks_array[0].notes
     }
+    saveWork()
 }
 
 
