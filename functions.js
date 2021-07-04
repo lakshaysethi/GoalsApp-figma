@@ -70,6 +70,40 @@ function moveItem(from, to,array) {
 function showPlanSection(){
     plan_section.style.display = 'block'
     prioritizesection.style.display = 'none'
-    top_goal.innerText = main_goals_array[0].name
+    top_goal.forEach((element)=> element.innerText=main_goals_array[0].name)
 
 }
+
+
+
+
+function  refreshTaskList(){
+    task_list_holder.innerHTML =""
+    main_goals_array[0].tasks_array.forEach(task => {
+        let task_element = document.createElement('div')
+        task_element.classList.add('task')
+        task_element.innerText = task.name
+        task_list_holder.append(task_element)
+        
+    });
+}
+
+
+function showWorkOnTaskSection(){
+    if (main_goals_array[0].tasks_array.length>0){
+        work_on_task_section.style.display = 'block'
+        plan_section.style.display = 'none'
+        current_task.innerText = main_goals_array[0].tasks_array[0].name
+    }
+}
+
+
+
+function getCurrentDateAndTimeString(){
+    let now = new Date()
+    now = now.toString()
+    return now.slice(4,24)
+}
+
+
+

@@ -5,6 +5,7 @@ class Goal{
     name = ''
     tasks_array = []
     // priority = 0
+    notes = ''
 }
 const main_goals_array = []
 const login_button = document.getElementById('login-with-google')
@@ -28,8 +29,27 @@ const prioritize_continue = document.getElementById("continue-on-prioritise-sect
 
 const plan_section = document.getElementById('plan-for-top-goal')
 
-const top_goal = document.getElementById("top-priority-goal")
+const top_goal = document.querySelectorAll(".top-priority-goal")
+
+const task_input = document.getElementById("task-input")
+
+
+const task_list_holder = document.getElementById('task-list-holder')
+
+
+const continue_btn_on_plan = document.getElementById('continue-btn-on-plan-section')
+
+
+
+const work_on_task_section = document.getElementById("work-on-task")
+
+const current_task = document.getElementById('current-task')
 
 
 
 
+
+
+
+const notes_box = document.getElementById('notes')
+const notes_input = document.getElementById('notes-input')

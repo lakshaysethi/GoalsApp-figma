@@ -36,19 +36,23 @@ One place to manage and achieve all your goals
     </div>
     <div style="display: none;" id="plan-for-top-goal">
         <div>Awesome Now lets work on your top priority goal</div>
-        <div id="top-priority-goal" class="goal">i wan to </div>
+        <div class="top-priority-goal goal">i wan to </div>
         <div>Make a list of everything you can do to achieve this goal</div>
-        <input placeholder="I can ..." type="text" name="" id="">
-        <div class="task">apply for jobs</div>
-        <button>Continue</button>
+        <input id="task-input" placeholder="I can ..." type="text" name="" id="">
+        <div id ="task-list-holder">
+            <!-- <div class="task">apply for jobs</div> -->
+        </div>
+        <button id= 'continue-btn-on-plan-section'>Continue</button>
     </div>
     <div style="display: none;" id="work-on-task">
-        <div class="goal">make 1000$ a day</div>
+        <div class="top-priority-goal goal">make 1000$ a day</div>
         <div>Great! lets now work on the goal! </div>
-        <div class="task">apply for jobs</div>
+        <div id ="current-task" class="task">apply for jobs</div>
         <div>Notes</div>
-        <input placeholder="I did ... I have a problem..."  type="text">
-        <div id="notes">july 4 2020 i applied for job</div>
+        <input id="notes-input" placeholder="I did ... I have a problem..."  type="text">
+        <div id="notes">
+            <!-- july 4 2020 i applied for job -->
+        </div>
         <button id="convert-into-goal">Convert this task into a goal</button>
         <button>Work on another task</button>
         <button>Done!</button>
