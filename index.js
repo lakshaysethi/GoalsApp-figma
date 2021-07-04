@@ -1,0 +1,1 @@
+// add arrow to all prioritize goals

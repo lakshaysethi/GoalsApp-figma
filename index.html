@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goals App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav id="side-nav"></nav>
+    <div style="display: none;" id="make-list-of-goals">
+        <div>Start with making a list of your goals</div>
+        <input id="goal-input" type="text" placeholder="I want to...">
+        <div class="goal"> I want to make ...</div>
+        <button>Continue</button>
+    </div>
+    <div style="display: none;" id="prioritize-goals">
+        <div class="prioritize-goal-text">Sweet now lets prioritize  your list of goals!</div>
+        <div class="priritize-goal">I want to earn 1000$...</div>
+        <button>Continue</button>
+        
+    </div>
+    <div style="display: none;" id="plan-for-top-goal">
+        <div>Awesome Now lets work on your top priority goal</div>
+        <div class="goal">i wan to </div>
+        <div>Make a list of everything you can do to achieve this goal</div>
+        <input placeholder="I can ..." type="text" name="" id="">
+        <div class="task">apply for jobs</div>
+        <button>Continue</button>
+    </div>
+    <div style="display: none;" id="work-on-task">
+        <div class="goal">make 1000$ a day</div>
+        <div>Great! lets now work on the goal! </div>
+        <div class="task">apply for jobs</div>
+        <div>Notes</div>
+        <input placeholder="I did ... I have a problem..."  type="text">
+        <div id="notes">july 4 2020 i applied for job</div>
+        <button id="convert-into-goal">Convert this task into a goal</button>
+        <button>Work on another task</button>
+        <button>Done!</button>
+    </div>
+    <div id="goal-achieved-question">
+        <div class="goal">I want to make 1000$ a day</div>
+        <div>Wow you did all the things on the list to achieve this goal!</div>
+        <button>Goal Achieved!</button>
+        <button>Not Achieved</button>
+    </div>
+
+<script src="definations.js"></script>
+<script src="functions.js"></script>
+<script src="index.js"></script>
+</body>
+</html>
