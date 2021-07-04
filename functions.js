@@ -50,14 +50,18 @@ function refreshPrioritizeGoalsList(){
         prioritize_goals_list_holder.append(goal_element)
         let move_down = document.createElement('div')
         let move_up = document.createElement('div')
+        let delete_button = document.createElement('div')
         let index_of_goal = main_goals_array.indexOf(goal)
         move_up.onclick = () => { moveItem(index_of_goal,0,main_goals_array); refreshPrioritizeGoalsList()}
         move_down.onclick = ()=> { moveItem(index_of_goal,index_of_goal+1,main_goals_array); refreshPrioritizeGoalsList()}
-        
+        delete_button.onclick = () => {if(confirm('are yousure you want to delete?')){main_goals_array.splice(index_of_goal,1);refreshPrioritizeGoalsList()}}
+        delete_button.classList.add("delete_button")
+        delete_button.innerText = 'Del'
         move_up.classList.add('priority_button')
         move_down.classList.add("priority_button",'upside_down')
         goal_element.prepend(move_down)
         goal_element.append(move_up)
+        goal_element.append(delete_button)
 
     });
 }
@@ -90,14 +94,18 @@ function  refreshTaskList(){
         task_list_holder.append(task_element)
         let move_down = document.createElement('div')
         let move_up = document.createElement('div')
+        let del_btn = document.createElement('div')
         let index_of_task = main_goals_array[0].tasks_array.indexOf(task)
         move_up.onclick = () => { moveItem(index_of_task,0,main_goals_array[0].tasks_array); refreshTaskList()}
         move_down.onclick = ()=> { moveItem(index_of_task,index_of_task+1,main_goals_array[0].tasks_array); refreshTaskList()}
-        
+        del_btn.onclick = ()=> {if(confirm('are yousure you want to delete?')){main_goals_array[0].tasks_array.splice(index_of_task,1);refreshTaskList()}}
+        del_btn.classList.add('delete_button')
+        del_btn.innerText = Del
         move_up.classList.add('priority_button')
         move_down.classList.add("priority_button",'upside_down')
         task_element.prepend(move_down)
         task_element.append(move_up)
+        task_element.append(del_btn)
 
     });
 
