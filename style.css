@@ -62,3 +62,20 @@ input{
 #convert-into-goal{
     background: #D4B6F1;   
 }
+
+
+
+.priority_button{
+    display: inline-block;
+    background-image: url(arrow.png);
+    background-repeat:no-repeat;
+    height: 35px;
+    width: 35px;
+    float:right;
+}
+
+
+.upside_down{
+    transform: rotate(180deg);
+    float: left;
+}
