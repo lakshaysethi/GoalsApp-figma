@@ -100,7 +100,7 @@ function  refreshTaskList(){
         move_down.onclick = ()=> { moveItem(index_of_task,index_of_task+1,main_goals_array[0].tasks_array); refreshTaskList()}
         del_btn.onclick = ()=> {if(confirm('are yousure you want to delete?')){main_goals_array[0].tasks_array.splice(index_of_task,1);refreshTaskList()}}
         del_btn.classList.add('delete_button')
-        del_btn.innerText = Del
+        del_btn.innerText = "Del"
         move_up.classList.add('priority_button')
         move_down.classList.add("priority_button",'upside_down')
         task_element.prepend(move_down)
