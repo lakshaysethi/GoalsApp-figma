@@ -80,3 +80,8 @@ convert_into_goal_button.onclick = convert_current_task_into_main_goal
 done_button.onclick = currentTaskDone
 
 
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js');
+}
+
+
