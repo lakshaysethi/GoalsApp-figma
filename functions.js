@@ -73,6 +73,7 @@ function showPlanSection(){
     refreshTaskList()
     plan_section.style.display = 'block'
     prioritizesection.style.display = 'none'
+    work_on_task_section.style.display = 'none'
     top_goal.forEach((element)=> element.innerText=main_goals_array[0].name)
     saveWork()
 }
