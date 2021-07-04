@@ -87,8 +87,19 @@ function  refreshTaskList(){
         task_element.classList.add('task')
         task_element.innerText = task.name
         task_list_holder.append(task_element)
+        let move_down = document.createElement('div')
+        let move_up = document.createElement('div')
+        let index_of_task = main_goals_array[0].tasks_array.indexOf(task)
+        move_up.onclick = () => { moveItem(index_of_task,0,main_goals_array[0].tasks_array); refreshTaskList()}
+        move_down.onclick = ()=> { moveItem(index_of_task,index_of_task+1,main_goals_array[0].tasks_array); refreshTaskList()}
         
+        move_up.classList.add('priority_button')
+        move_down.classList.add("priority_button",'upside_down')
+        task_element.prepend(move_down)
+        task_element.append(move_up)
+
     });
+
 }
 
 
