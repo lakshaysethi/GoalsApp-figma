@@ -1,0 +1,23 @@
+body{
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 22px;
+    line-height: 25px;
+    text-align: center;
+    color: #000000;
+}
+
+
+
+#login-text{
+    margin: 5rem 2rem;
+
+}
+
+
+#login-with-google{
+    background: #B1C88B;
+    margin: 1rem 1rem;
+    padding: 2rem;
+}
