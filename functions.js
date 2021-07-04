@@ -97,6 +97,7 @@ function showWorkOnTaskSection(){
         work_on_task_section.style.display = 'block'
         plan_section.style.display = 'none'
         current_task.innerText = main_goals_array[0].tasks_array[0].name
+        notes_box.innerText = main_goals_array[0].tasks_array[0].notes
     }
 }
 
@@ -123,7 +124,7 @@ function convert_current_task_into_main_goal(){
         }
     });
 
-
+    saveWork()
 
 }
 
@@ -146,9 +147,13 @@ function saveWork(){
 function currentTaskDone(){
     main_goals_array[0].tasks_array.forEach(task => {
         if (task.name == current_task.innerText){
-           
+           task.achieved = true
+           moveItem(0,main_goals_array[0].tasks_array.length,main_goals_array[0].tasks_array)
+           task.notes += getCurrentDateAndTimeString() + ' ' + "DONE!" +"\n"
         }
     });
+    saveWork()
+    showPlanSection()
 }
 
 

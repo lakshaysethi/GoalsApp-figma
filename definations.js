@@ -5,6 +5,7 @@ class Goal{
     name = ''
     tasks_array = []
     // priority = 0
+    achieved = false
     notes = ''
 }
 let main_goals_array = []
