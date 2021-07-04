@@ -51,7 +51,7 @@ function refreshPrioritizeGoalsList(){
         let move_down = document.createElement('div')
         let move_up = document.createElement('div')
         let index_of_goal = main_goals_array.indexOf(goal)
-        move_up.onclick = () => { moveItem(index_of_goal,index_of_goal-1,main_goals_array); refreshPrioritizeGoalsList()}
+        move_up.onclick = () => { moveItem(index_of_goal,0,main_goals_array); refreshPrioritizeGoalsList()}
         move_down.onclick = ()=> { moveItem(index_of_goal,index_of_goal+1,main_goals_array); refreshPrioritizeGoalsList()}
         
         move_up.classList.add('priority_button')
