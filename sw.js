@@ -8,6 +8,7 @@ const contentToCache = [
   '/index.js',
   '/functions.js',
   '/style.css',
+  '/side-nav-style.css',
 ];
 self.addEventListener('activate', e => self.clients.claim());
 
