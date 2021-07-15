@@ -1,4 +1,5 @@
-const version = 2;
+const version = 2.2;
+const whatchanged = 'darkmode side nav'
 const cacheName = 'goalsappcache';
 const contentToCache = [
   '/',

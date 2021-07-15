@@ -189,3 +189,51 @@ function openNav() {
     document.getElementById("mySidenav").style.width = "0";
   }
 
+/* available constants
+  
+  login_button
+  login_screen
+  set_goal_screen
+  goal_input
+  main_goals_list_holder
+  set_goal_continue_btn
+  prioritizesection
+  prioritize_goals_list_holder
+  prioritize_continue
+  plan_section
+  top_goal
+  task_input
+  task_list_holder
+  continue_btn_on_plan
+  work_on_task_section
+  current_task
+  work_another_task_btn
+  notes_box
+  notes_input
+  convert_into_goal_button
+  done_button
+  */
+
+
+
+
+function darkMode(bool){
+    
+    let body = document.getElementsByTagName('body')[0]
+    
+    if(bool){
+
+        body.style.background = 'black'
+        body.style.color = 'white'
+
+    }else{
+    
+        body.style.background = 'white'
+        body.style.color = 'black'
+
+
+    }
+
+    
+}
+
