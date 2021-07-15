@@ -1,5 +1,5 @@
-const version = 2.2;
-const whatchanged = 'darkmode side nav'
+const version = "2.3.1";
+const whatchanged = ' side nav all screeen darkmode side nav'
 const cacheName = 'goalsappcache';
 const contentToCache = [
   '/',

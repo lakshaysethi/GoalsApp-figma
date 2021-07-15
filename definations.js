@@ -65,4 +65,5 @@ const convert_into_goal_button = document.getElementById("convert-into-goal")
 const done_button = document.getElementById('done-button')
 
 
+const body = document.getElementsByTagName('body')[0]
 

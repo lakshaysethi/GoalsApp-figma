@@ -181,7 +181,7 @@ function currentTaskDone(){
 
 
 function openNav() {
-    document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById("mySidenav").style.width = "100%";
   }
   
   /* Set the width of the side navigation to 0 */
@@ -219,7 +219,6 @@ function openNav() {
 
 function darkMode(bool){
     
-    let body = document.getElementsByTagName('body')[0]
     
     if(bool){
 
@@ -236,4 +235,6 @@ function darkMode(bool){
 
     
 }
+
+
 

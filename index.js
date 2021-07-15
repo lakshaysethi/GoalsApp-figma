@@ -89,3 +89,6 @@ if ('serviceWorker' in navigator) {
 
 
 work_another_task_btn.onclick = showPlanSection
+
+
+
