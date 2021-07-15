@@ -13,6 +13,8 @@ function showSetGoalsScreen(){
     login_screen.style.display = 'none'
     set_goal_screen.style.display = 'block'
     refreshGoalsList()
+    saveWork()
+    closeNav()
 }
 
 function make_and_save_new_goal(goal_name){
