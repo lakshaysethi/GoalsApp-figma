@@ -92,3 +92,8 @@ work_another_task_btn.onclick = showPlanSection
 
 
 
+if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    // dark mode
+    darkMode(1)
+}
+
