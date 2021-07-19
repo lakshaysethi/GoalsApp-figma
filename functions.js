@@ -5,14 +5,18 @@ function showLoginScreen(){
 }
 
 
-function loginUserWithGoogle(){
+function loginUserWithGoogle(firebase=1){
+        
+    if (firebase){
         if (user_auth_data.user_is_logged_in){
             showSetGoalsScreen()
 
         }else{
             showLoginScreen()
         }
-
+    }else{
+        showSetGoalsScreen()
+    }
 
 }
 
