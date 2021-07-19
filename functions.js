@@ -271,3 +271,45 @@ function suggest(text){
     })
 
 }
+
+
+
+
+
+async function saveuserDataToFireStore(){
+
+    let user_data ={
+        ...user_auth_data,
+        "goals":JSON.stringify(main_goals_array)
+    }
+
+
+   return  db.collection("users").doc(user_auth_data.user_unique_key).set(user_data)
+        
+    
+
+}
+
+async function getUserGoals(uid){
+
+    return  db.collection("users").doc(uid).get()
+        // .then((user_uid_doc) => { console.log("user id doc",user_uid_doc) });
+}
+
+
+
+
+
+function signOut(){
+
+    if (user_auth_data.user_is_logged_in){
+        console.log('logging out')
+
+        firebase.auth().signOut().then(res=>console.log(res))
+        localStorage.clear()
+        location.reload()
+        user_auth_data.user_is_logged_in = false
+        user_auth_data = undefined
+    }
+    // .then(res=>{if res.})
+}
