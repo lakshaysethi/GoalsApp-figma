@@ -1,3 +1,5 @@
+const DEBUG =true
+
 class Goal{
     constructor(name){
         this.name = name
