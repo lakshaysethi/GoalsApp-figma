@@ -24,9 +24,12 @@ function showSetGoalsScreen(){
     work_on_task_section.style.display = 'none'
     login_screen.style.display = 'none'
     set_goal_screen.style.display = 'block'
+    downloadGoals()
     refreshGoalsList()
-    saveWork()
-    closeNav()
+    
+    // saveWork()
+    
+    // closeNav()
 }
 
 function make_and_save_new_goal(goal_name){
@@ -174,8 +177,7 @@ function getMainGoalsArray(){
 function saveWork(){
     localStorage.setItem("ga",JSON.stringify(main_goals_array))
     if(user_auth_data.user_unique_key!=""){
-
-        saveuserDataToFireStore().then(response=>console.log("saved data",response)).catch(err=>console.log(err))
+        saveuserDataToFireStore()
     }
 }
 
@@ -258,17 +260,17 @@ function darkMode(bool){
 
 function suggest(text){
     
-    main_goals_array.forEach(goal=>{
-        if (text.search(goal.name)){
-            let dropdown = document.createElement('div')
-            let alreadyGoalDiv = document.createElement('div')
-            alreadyGoalDiv.innerText = goal.name
-            dropdown.prepend(alreadyGoalDiv)
-            suggest_holder.innerHTML =""
-            suggest_holder.append(dropdown)
-        }
+    // main_goals_array.forEach(goal=>{
+    //     if (text.search(goal.name)){
+    //         let dropdown = document.createElement('div')
+    //         let alreadyGoalDiv = document.createElement('div')
+    //         alreadyGoalDiv.innerText = goal.name
+    //         dropdown.prepend(alreadyGoalDiv)
+    //         suggest_holder.innerHTML =""
+    //         suggest_holder.append(dropdown)
+    //     }
 
-    })
+    // })
 
 }
 
@@ -284,16 +286,15 @@ async function saveuserDataToFireStore(){
     }
 
 
-   return  db.collection("users").doc(user_auth_data.user_unique_key).set(user_data)
+    return await db.collection("users").doc(user_auth_data.user_unique_key).set(user_data)
         
     
 
 }
 
 async function getUserGoals(uid){
-
-    return  db.collection("users").doc(uid).get()
-        // .then((user_uid_doc) => { console.log("user id doc",user_uid_doc) });
+    console.log("redundent function called")
+   downloadGoals()
 }
 
 
@@ -313,3 +314,31 @@ function signOut(){
     }
     // .then(res=>{if res.})
 }
+
+
+
+
+async function downloadGoals(){
+
+    
+
+
+    const uid = user_auth_data.user_unique_key
+    const doc = await db.collection("users").doc(uid).get()
+    if (doc.exists){
+        const doc_data = await doc.data()
+        console.log("user's goals :",JSON.parse(doc_data.goals))
+        const firebase_goals_array = JSON.parse(doc_data.goals)
+        main_goals_array = firebase_goals_array
+        refreshGoalsList()
+    }else{
+        console.log("error doc not found")
+    }
+
+}
+
+
+
+
+
+

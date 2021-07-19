@@ -1,5 +1,5 @@
-const version = "2.5";
-const whatchanged = ' auto darkmode side nav all screeen darkmode side nav'
+const version = "3";
+const whatchanged = 'added firebase auth and firestore'
 const cacheName = 'goalsappcache';
 const contentToCache = [
   '/',

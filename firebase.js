@@ -23,24 +23,19 @@ signInOptions: [
 
   callbacks: {
     signInSuccessWithAuthResult: function(authResult, redirectUrl) {
-      showSetGoalsScreen()
-      // User successfully signed in.
       console.log(authResult, authResult.user.displayName, authResult.user.email, authResult.user.photoURL)
-      // Return type determines whether we continue the redirect automatically
-      // or whether we leave that to developer to handle.
+      // User successfully signed in.
       user_auth_data.user_is_logged_in=true
       user_auth_data.user_name=authResult.user.displayName
       user_auth_data.user_email=authResult.user.email
       user_auth_data.user_pp =  authResult.user.photoURL
       user_auth_data.user_unique_key =  authResult.user.uid
-      localStorage.setItem("auth",JSON.stringify(user_auth_data))
-       getUserGoals(user_auth_data.user_unique_key).then(response=>{
-         console.log("tried to get data",response)
-         if (response.exists){
-           
-         }
-       }).catch(err=>console.log(err))
       
+      //save user'basic info
+      localStorage.setItem("auth",JSON.stringify(user_auth_data))
+      
+      showSetGoalsScreen()
+      // Return type determines whether we continue the redirect automatically
       return false;
     },
     uiShown: function() {
