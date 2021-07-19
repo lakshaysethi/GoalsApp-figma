@@ -173,6 +173,10 @@ function getMainGoalsArray(){
 
 function saveWork(){
     localStorage.setItem("ga",JSON.stringify(main_goals_array))
+    if(user_auth_data.user_unique_key!=""){
+
+        saveuserDataToFireStore().then(response=>console.log("saved data",response)).catch(err=>console.log(err))
+    }
 }
 
 
