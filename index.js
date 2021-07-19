@@ -23,7 +23,7 @@ if (!user_auth_data.user_is_logged_in){
 }
 
 login_button.addEventListener('click',()=>{
-    loginUserWithGoogle()
+    loginUserWithGoogle(0)
 })
 
 

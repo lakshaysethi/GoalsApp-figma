@@ -32,7 +32,14 @@ signInOptions: [
       user_auth_data.user_name=authResult.user.displayName
       user_auth_data.user_email=authResult.user.email
       user_auth_data.user_pp =  authResult.user.photoURL
+      user_auth_data.user_unique_key =  authResult.user.uid
       localStorage.setItem("auth",JSON.stringify(user_auth_data))
+       getUserGoals(user_auth_data.user_unique_key).then(response=>{
+         console.log("tried to get data",response)
+         if (response.exists){
+           
+         }
+       }).catch(err=>console.log(err))
       
       return false;
     },
