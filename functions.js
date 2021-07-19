@@ -4,8 +4,12 @@ function showLoginScreen(){
 
 
 function loginUserWithGoogle(){
+        
+    
     user_is_logged_in = true
     showSetGoalsScreen()
+
+
 }
 
 function showSetGoalsScreen(){
