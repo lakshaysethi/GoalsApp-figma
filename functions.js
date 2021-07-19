@@ -1,13 +1,17 @@
 function showLoginScreen(){
     login_screen.style.display = 'block'
+    work_on_task_section.style.display = 'none'
+    set_goal_screen.style.display = 'none'
 }
 
 
 function loginUserWithGoogle(){
-        
-    
-    user_is_logged_in = true
-    showSetGoalsScreen()
+        if (user_auth_data.user_is_logged_in){
+            showSetGoalsScreen()
+
+        }else{
+            showLoginScreen()
+        }
 
 
 }

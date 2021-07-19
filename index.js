@@ -1,3 +1,10 @@
+if (localStorage.getItem("auth")){
+    user_auth_data = JSON.parse(localStorage.getItem("auth"))
+
+
+}
+console.log(user_auth_data)
+
 main_goals_array = getMainGoalsArray()
 if (main_goals_array == undefined || main_goals_array == null){
     main_goals_array = []
@@ -9,7 +16,7 @@ if (main_goals_array == undefined || main_goals_array == null){
 
 //if user is not logged in show login screen
 
-if (!user_is_logged_in){
+if (!user_auth_data.user_is_logged_in){
     showLoginScreen()
 }else{
     showSetGoalsScreen()

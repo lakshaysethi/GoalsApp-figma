@@ -13,8 +13,14 @@ class Goal{
 }
 let main_goals_array = []
 const login_button = document.getElementById('login-with-google')
-let user_is_logged_in = false // TODO change according to google signin
+let user_auth_data ={
+    'user_is_logged_in' : false,
+    'user_name':"",
+    "user_email":"",
+    "user_pp":""
+}
 
+  // TODO change according to google signin
 const login_screen = document.getElementById('login-screen')
 const set_goal_screen = document.getElementById('make-list-of-goals')
 const goal_input = document.getElementById('goal-input')
