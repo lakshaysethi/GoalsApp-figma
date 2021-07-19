@@ -81,7 +81,9 @@ done_button.onclick = currentTaskDone
 
 
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('./sw.js');
+    if (!DEBUG){
+        navigator.serviceWorker.register('./sw.js');
+    }
 }
 
 
