@@ -244,3 +244,18 @@ function darkMode(bool){
 
 
 
+function suggest(text){
+    
+    main_goals_array.forEach(goal=>{
+        if (text.search(goal.name)){
+            let dropdown = document.createElement('div')
+            let alreadyGoalDiv = document.createElement('div')
+            alreadyGoalDiv.innerText = goal.name
+            dropdown.prepend(alreadyGoalDiv)
+            suggest_holder.innerHTML =""
+            suggest_holder.append(dropdown)
+        }
+
+    })
+
+}

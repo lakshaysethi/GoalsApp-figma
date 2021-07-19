@@ -8,6 +8,7 @@ class Goal{
     tasks_array = []
     // priority = 0
     achieved = false
+    archived = false
     notes = ''
 }
 let main_goals_array = []
@@ -68,4 +69,6 @@ const done_button = document.getElementById('done-button')
 
 
 const body = document.getElementsByTagName('body')[0]
+
+const suggest_holder = document.getElementById('suggest-holder')
 

@@ -20,12 +20,14 @@ login_button.addEventListener('click',()=>{
 })
 
 
-goal_input.addEventListener('keypress',(e)=>{
+goal_input.addEventListener('keyup',(e)=>{
     
     if(e.key == 'Enter' && goal_input.value!='' ){
         make_and_save_new_goal(goal_input.value)
         goal_input.value=''
         refreshGoalsList()
+    }else{
+        suggest(goal_input.value)
     }
     saveWork()
 })
