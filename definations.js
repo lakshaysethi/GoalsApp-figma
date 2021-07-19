@@ -17,7 +17,8 @@ let user_auth_data ={
     'user_is_logged_in' : false,
     'user_name':"",
     "user_email":"",
-    "user_pp":""
+    "user_pp":"",
+    "user_unique_key":""
 }
 
   // TODO change according to google signin
