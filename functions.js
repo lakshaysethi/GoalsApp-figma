@@ -21,9 +21,12 @@ function loginUserWithGoogle(firebase=1){
 }
 
 function showSetGoalsScreen(){
+    set_goal_screen.style.display = 'block'
     work_on_task_section.style.display = 'none'
     login_screen.style.display = 'none'
-    set_goal_screen.style.display = 'block'
+    prioritizesection.style.display = 'none'
+    work_on_task_section.style.display = 'none'
+    plan_section.style.display = 'none'
     downloadGoals()
     refreshGoalsList()
     

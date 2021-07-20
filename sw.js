@@ -1,5 +1,5 @@
-const version = "3";
-const whatchanged = 'added firebase auth and firestore'
+const version = "3.1";
+const whatchanged = 'added firebase auth and firestore fixed display none'
 const cacheName = 'goalsappcache';
 const contentToCache = [
   '/',
