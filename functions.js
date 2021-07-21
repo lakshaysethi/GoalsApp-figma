@@ -37,7 +37,7 @@ function showSetGoalsScreen(){
 
 function make_and_save_new_goal(goal_name){
     let goal = new Goal(goal_name)
-    main_goals_array.push(goal)
+    main_goals_array.unshift(goal)
 }
 
 function refreshGoalsList(){
@@ -157,7 +157,7 @@ function convert_current_task_into_main_goal(){
     main_goals_array[0].tasks_array.forEach(task => {
         if (task.name == current_task.innerText){
             // add to main goal array
-            main_goals_array.push(task)
+            main_goals_array.unshift(task)
             let index = main_goals_array[0].tasks_array.indexOf(task)
             // remove from task array
             main_goals_array[0].tasks_array.splice(index,1)

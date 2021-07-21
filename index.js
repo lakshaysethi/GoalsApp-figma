@@ -49,7 +49,7 @@ prioritize_continue.onclick = showPlanSection
 task_input.addEventListener('keypress',(e)=>{
     if(e.key  == 'Enter' && task_input.value!=''){
         let task = new Goal(task_input.value)
-        main_goals_array[0].tasks_array.push(task)
+        main_goals_array[0].tasks_array.unshift(task)
         task_input.value=''
         refreshTaskList()
     }
