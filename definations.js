@@ -60,7 +60,7 @@ const current_task = document.getElementById('current-task')
 
 const work_another_task_btn = document.getElementById('work-another')
 
-
+const title= document.getElementsByTagName('title')[0]
 
 
 const notes_box = document.getElementById('notes')

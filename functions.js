@@ -100,6 +100,7 @@ function showPlanSection(){
     work_on_task_section.style.display = 'none'
     top_goal.forEach((element)=> element.innerText=main_goals_array[0].name)
     saveWork()
+    title.innerText = main_goals_array[0].name + ' - Goals App'
 }
 
 
@@ -139,6 +140,7 @@ function showWorkOnTaskSection(){
         current_task.innerText = main_goals_array[0].tasks_array[0].name
         notes_box.innerText = main_goals_array[0].tasks_array[0].notes
     }
+    title.innerText = main_goals_array[0].tasks_array[0].name + ' - Goals App'
     saveWork()
 }
 
