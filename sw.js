@@ -22,11 +22,11 @@ self.addEventListener('install', e => {
   );
 });
 
-// the fetch event handler, to intercept requests and serve all 
-// static assets from the cache
-self.addEventListener('fetch', e => {
-  e.respondWith(
-    caches.match(e.request)
-    .then(response => response ? response : fetch(e.request))
-  )
+// network first cache
+self.addEventListener('fetch', function(event) {
+  event.respondWith(
+    fetch(event.request).catch(function() {
+      return caches.match(event.request);
+    })
+  );
 });
