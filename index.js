@@ -108,3 +108,50 @@ if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').match
     darkMode(1)
 }
 
+
+
+
+
+//### keyboard shortcuts
+
+// Alt+G is go list of goals
+
+let hey1 = document.getElementsByTagName('body')[0]
+
+hey1.addEventListener('keydown', e => {
+    myfunc(e)
+})
+
+
+hey1.addEventListener('keyup', e => {
+    myfunc(e, "up")
+})
+
+let altpressed = false
+function myfunc(e, up = "down") {
+
+    if (up == "down" && e.key == "Alt") {
+        altpressed = true
+    } if (up == "up" && e.key == "Alt") {
+        altpressed = false
+    }
+    if (altpressed && e.key == "g" && up == "down") {
+        //console.log("success")
+        showSetGoalsScreen()
+    }
+    if (altpressed && e.key == "h" && up == "down") {
+        //console.log("success")
+        showPrioritizeSection()
+    }
+    //console.log(e.key,up,altpressed)
+
+
+
+}
+
+// Alt+H is go list of priority
+
+
+// 
+
+

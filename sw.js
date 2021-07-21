@@ -1,5 +1,5 @@
-const version = "3.1.1";
-const whatchanged = 'added firebase auth and firestore fixed display none, added closeNav() '
+const version = "3.2";
+const whatchanged = 'keyboard shortcuts added firebase auth and firestore fixed display none, added closeNav() '
 const cacheName = 'goalsappcache';
 const contentToCache = [
   '/',
