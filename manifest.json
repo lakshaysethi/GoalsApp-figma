@@ -3,7 +3,7 @@
     "short_name": "GoalsApp",
     "theme_color": "#d155d7",
     "background_color": "#0e2334",
-    "display": "standalone",
+    "display": "fullscreen",
     "orientation": "portrait",
     "scope": "/",
     "start_url": "/",
