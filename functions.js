@@ -252,7 +252,7 @@ function darkMode(bool){
         const darkstyle = document.createElement('style')
         body.prepend(darkstyle)
         darkstyle.innerHTML = `
-            .goal,priritize-goal,.task{
+            .goal,.priritize-goal,.task{
                 background:#354c3a;
             }
         
