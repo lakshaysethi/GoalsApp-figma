@@ -49,18 +49,22 @@ function refreshGoalsList(){
             goal_element.classList.add('goal')
             goal_element.innerText = goal.name
             main_goals_list_holder.append(goal_element)
-            let archive_btn = document.createElement('button')
-            archive_btn.innerText = "🗃️"
-            archive_btn.style.padding = "0rem 1rem"
-            archive_btn.style.float = "right"
-            archive_btn.style.margin = 0
-           
+            let archive_btn = getArchiveBtn()
             archive_btn.onclick = () =>{goal.archived = true;refreshGoalsList(); saveWork()}
             goal_element.append(archive_btn)
         }else{
             console.log(goal.name,"is", goal.archived, "and hence not displayed")
         }
     });
+}
+function getArchiveBtn(){
+
+    let archive_btn = document.createElement('button')
+    archive_btn.innerText = "🗃️"
+    archive_btn.style.padding = "0rem 1rem"
+    archive_btn.style.float = "right"
+    archive_btn.style.margin = 0
+    return archive_btn
 }
 
 function showPrioritizeSection(){
@@ -76,6 +80,7 @@ function showPrioritizeSection(){
 function refreshPrioritizeGoalsList(){
     prioritize_goals_list_holder.innerHTML =""
     main_goals_array.forEach(goal => {
+        if (!goal.archived){
         let goal_element = document.createElement('div')
         goal_element.classList.add('priritize-goal')
         goal_element.innerText = goal.name
@@ -95,6 +100,10 @@ function refreshPrioritizeGoalsList(){
         goal_element.append(move_up)
         goal_element.append(delete_button)
 
+        let archive_btn = getArchiveBtn()
+        goal_element.append(archive_btn)
+        archive_btn.onclick = () =>{goal.archived = true;refreshPrioritizeGoalsList(); saveWork()}
+        }
     });
 }
 
