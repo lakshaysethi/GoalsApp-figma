@@ -20,15 +20,15 @@ function loginUserWithGoogle(firebase=1){
 
 }
 
-function showSetGoalsScreen(){
+function showSetGoalsScreen(showArch=0){
     set_goal_screen.style.display = 'block'
     work_on_task_section.style.display = 'none'
     login_screen.style.display = 'none'
     prioritizesection.style.display = 'none'
     work_on_task_section.style.display = 'none'
     plan_section.style.display = 'none'
-    downloadGoals()
-    refreshGoalsList()
+    if(!showArch)downloadGoals()
+    refreshGoalsList(showArch)
     
     // saveWork()
     
@@ -40,22 +40,30 @@ function make_and_save_new_goal(goal_name){
     main_goals_array.unshift(goal)
 }
 
-function refreshGoalsList(){
+function refreshGoalsList(showArch=0){
     main_goals_list_holder.innerHTML =""
+    let totalnumberofgoalsdisplayed = 0
     main_goals_array.forEach(goal => {
-        if (!goal.archived) {
-
-            let goal_element = document.createElement('div')
-            goal_element.classList.add('goal')
-            goal_element.innerText = goal.name
+        
+        let goal_element = document.createElement('div')
+        goal_element.classList.add('goal')
+        goal_element.innerText = goal.name
+        let archive_btn = getArchiveBtn()
+        archive_btn.onclick = () =>{goal.archived = !showArch;refreshGoalsList(showArch); saveWork()}
+        goal_element.append(archive_btn)
+        if (showArch && goal.archived) {
             main_goals_list_holder.append(goal_element)
-            let archive_btn = getArchiveBtn()
-            archive_btn.onclick = () =>{goal.archived = true;refreshGoalsList(); saveWork()}
-            goal_element.append(archive_btn)
+            totalnumberofgoalsdisplayed++
+        }else if(showArch ==0 && !goal.archived ) {
+            main_goals_list_holder.append(goal_element)
+            totalnumberofgoalsdisplayed++
         }else{
             console.log(goal.name,"is", goal.archived, "and hence not displayed")
         }
     });
+    let totaldiv = document.createElement('div')
+    totaldiv.innerText = totalnumberofgoalsdisplayed
+    main_goals_list_holder.prepend(totaldiv)
 }
 function getArchiveBtn(){
 
