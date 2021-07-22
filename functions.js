@@ -249,6 +249,14 @@ function darkMode(bool){
 
         body.style.background = 'black'
         body.style.color = 'white'
+        const darkstyle = document.createElement('style')
+        body.prepend(darkstyle)
+        darkstyle.innerHTML = `
+            .goal,priritize-goal,.task{
+                background:#354c3a;
+            }
+        
+        `
 
     }else{
     
