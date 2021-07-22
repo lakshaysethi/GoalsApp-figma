@@ -1,7 +1,7 @@
-const version = "3.2";
-const whatchanged = 'keyboard shortcuts added firebase auth and firestore fixed display none, added closeNav() '
+const version = "3.2.1";
+const whatchanged = 'dark mode improved keyboard shortcuts added firebase auth and firestore fixed display none, added closeNav() '
 const cacheName = 'goalsappcache';
-const CACHE_VERSION = 10;
+const CACHE_VERSION = 11;
 const CURRENT_CACHE = `main-${CACHE_VERSION}`;
 
 const cacheFiles = // ['/', '/about-me/', '/projects/', '/offline/'];
