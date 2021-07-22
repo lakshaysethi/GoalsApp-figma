@@ -70,7 +70,7 @@ function getArchiveBtn(){
     let archive_btn = document.createElement('button')
     archive_btn.innerText = "🗃️"
     archive_btn.style.padding = "0rem 1rem"
-    archive_btn.style.float = "right"
+    archive_btn.style.float = "left"
     archive_btn.style.margin = 0
     return archive_btn
 }
