@@ -143,6 +143,11 @@ function myfunc(e, up = "down") {
         //console.log("success")
         showPrioritizeSection()
     }
+    if (altpressed && e.key == "j" && up == "down") {
+        //console.log("success")
+        darkMode(1)
+    }
+     
     //console.log(e.key,up,altpressed)
 
 
