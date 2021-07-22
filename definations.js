@@ -11,6 +11,9 @@ class Goal{
     archived = false
     notes = ''
 }
+
+let syncallowed = true //its 20k per day not month bro! 
+
 let main_goals_array = []
 const login_button = document.getElementById('login-with-google')
 let user_auth_data ={

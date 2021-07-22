@@ -43,11 +43,23 @@ function make_and_save_new_goal(goal_name){
 function refreshGoalsList(){
     main_goals_list_holder.innerHTML =""
     main_goals_array.forEach(goal => {
-        let goal_element = document.createElement('div')
-        goal_element.classList.add('goal')
-        goal_element.innerText = goal.name
-        main_goals_list_holder.append(goal_element)
-        
+        if (!goal.archived) {
+
+            let goal_element = document.createElement('div')
+            goal_element.classList.add('goal')
+            goal_element.innerText = goal.name
+            main_goals_list_holder.append(goal_element)
+            let archive_btn = document.createElement('button')
+            archive_btn.innerText = "🗃️"
+            archive_btn.style.padding = "0rem 1rem"
+            archive_btn.style.float = "right"
+            archive_btn.style.margin = 0
+           
+            archive_btn.onclick = () =>{goal.archived = true;refreshGoalsList(); saveWork()}
+            goal_element.append(archive_btn)
+        }else{
+            console.log(goal.name,"is", goal.archived, "and hence not displayed")
+        }
     });
 }
 
@@ -181,7 +193,7 @@ function getMainGoalsArray(){
 
 function saveWork(){
     localStorage.setItem("ga",JSON.stringify(main_goals_array))
-    if(user_auth_data.user_unique_key!=""){
+    if(user_auth_data.user_unique_key!="" && syncallowed ){
         saveuserDataToFireStore()
     }
 }
@@ -332,10 +344,7 @@ function signOut(){
 
 
 async function downloadGoals(){
-
-    
-
-
+    if (syncallowed){
     const uid = user_auth_data.user_unique_key
     const doc = await db.collection("users").doc(uid).get()
     if (doc.exists){
@@ -347,7 +356,7 @@ async function downloadGoals(){
     }else{
         console.log("error doc not found")
     }
-
+    }
 }
 
 
