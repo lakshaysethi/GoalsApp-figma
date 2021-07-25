@@ -186,7 +186,7 @@ function getCurrentDateAndTimeString(){
 function convert_current_task_into_main_goal(){
     
     main_goals_array[0].tasks_array.forEach(task => {
-        if (task.name == current_task.innerText){
+        if (task.name.trim() == current_task.innerText.trim()){
             // add to main goal array
             main_goals_array.unshift(task)
             let index = main_goals_array[0].tasks_array.indexOf(task)
