@@ -221,7 +221,7 @@ function saveWork(){
 
 function currentTaskDone(){
     main_goals_array[0].tasks_array.forEach(task => {
-        if (task.name == current_task.innerText){
+        if (task.name.trim() == current_task.innerText.trim()){
            task.achieved = true
            moveItem(0,main_goals_array[0].tasks_array.length,main_goals_array[0].tasks_array)
            task.notes += getCurrentDateAndTimeString() + ' ' + "DONE!" +"\n"
