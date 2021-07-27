@@ -1,5 +1,5 @@
-const version = "3.2.2";
-const whatchanged = 'dark mode improved fix keyboard shortcuts added firebase auth and firestore fixed display none, added closeNav() '
+const version = "3.2.3";
+const whatchanged = 'added check boxes dark mode improved fix keyboard shortcuts added firebase auth and firestore fixed display none, added closeNav() '
 const cacheName = 'goalsappcache';
 const contentToCache = [
   '/',

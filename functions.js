@@ -157,6 +157,26 @@ function  refreshTaskList(){
         task_element.append(move_up)
         task_element.append(del_btn)
 
+
+        let checkbox = document.createElement('input')
+        checkbox.setAttribute("type","checkbox")
+        checkbox.style.transform = "scale(3.0)"
+        task_element.append(checkbox)
+        if (task.achieved ){
+            checkbox.checked =true
+        }
+        checkbox.addEventListener("change",()=>{
+            if (checkbox.checked) {
+                task.achieved =true
+                task.notes += "\n" +getCurrentDateAndTimeString() +" task checked off  " +"\n" 
+            } else {
+                task.achieved =false
+                task.notes += "\n" +getCurrentDateAndTimeString() +" task unchecked  " +"\n" 
+
+            }
+            saveWork()
+        })
+
     });
 
 }
