@@ -123,13 +123,18 @@ function moveItem(from, to,array) {
 
 
 function showPlanSection(){
+    if (!comming_from_go_deeper){
+
+        current_goal_obj = main_goals_array[0] // at this stage
+    }// else current_goal_obj is defined 
+    console.log("current_goal_obj",current_goal_obj)
     refreshTaskList()
     plan_section.style.display = 'block'
     prioritizesection.style.display = 'none'
     work_on_task_section.style.display = 'none'
-    top_goal.forEach((element)=> element.innerText=main_goals_array[0].name)
+    top_goal.forEach((element)=> element.innerText=current_goal_obj.name)
     saveWork()
-    title.innerText = main_goals_array[0].name + ' - Goals App'
+    title.innerText = current_task_obj.name + ' - Goals App'
 }
 
 
@@ -137,7 +142,7 @@ function showPlanSection(){
 
 function  refreshTaskList(){
     task_list_holder.innerHTML =""
-    main_goals_array[0].tasks_array.forEach(task => {
+    current_goal_obj.tasks_array.forEach(task => {
         let task_element = document.createElement('div')
         task_element.classList.add('task')
         task_element.innerText = task.name
@@ -145,10 +150,10 @@ function  refreshTaskList(){
         let move_down = document.createElement('div')
         let move_up = document.createElement('div')
         let del_btn = document.createElement('div')
-        let index_of_task = main_goals_array[0].tasks_array.indexOf(task)
-        move_up.onclick = () => { moveItem(index_of_task,0,main_goals_array[0].tasks_array); saveWork();refreshTaskList()}
-        move_down.onclick = ()=> { moveItem(index_of_task,index_of_task+1,main_goals_array[0].tasks_array) ;saveWork(); refreshTaskList()}
-        del_btn.onclick = ()=> {if(confirm('are yousure you want to delete?')){main_goals_array[0].tasks_array.splice(index_of_task,1);refreshTaskList()}}
+        let index_of_task = current_goal_obj.tasks_array.indexOf(task)
+        move_up.onclick = () => { moveItem(index_of_task,0,current_goal_obj.tasks_array); saveWork();refreshTaskList()}
+        move_down.onclick = ()=> { moveItem(index_of_task,index_of_task+1,current_goal_obj.tasks_array) ;saveWork(); refreshTaskList()}
+        del_btn.onclick = ()=> {if(confirm('are yousure you want to delete?')){current_goal_obj.tasks_array.splice(index_of_task,1);refreshTaskList()}}
         del_btn.classList.add('delete_button')
         del_btn.innerText = "Del"
         move_up.classList.add('priority_button')
@@ -183,13 +188,15 @@ function  refreshTaskList(){
 
 
 function showWorkOnTaskSection(){
+    if (!current_task_obj ) current_goal_obj = main_goals_array[0]
     if (main_goals_array[0].tasks_array.length>0){
+        current_task_obj = current_goal_obj.tasks_array[0]
         work_on_task_section.style.display = 'block'
         plan_section.style.display = 'none'
-        current_task.innerText = main_goals_array[0].tasks_array[0].name
-        notes_box.innerText = main_goals_array[0].tasks_array[0].notes
+        current_task.innerText = current_task_obj.name
+        notes_box.innerText = current_task_obj.notes
     }
-    title.innerText = main_goals_array[0].tasks_array[0].name + ' - Goals App'
+    title.innerText = current_task_obj.name + ' - Goals App'
     saveWork()
 }
 
@@ -215,6 +222,16 @@ function convert_current_task_into_main_goal(){
             showSetGoalsScreen()
         }
     });
+
+    saveWork()
+
+}
+
+function go_deeper(){
+    current_goal_obj = current_task_obj
+    comming_from_go_deeper = true
+
+    showPlanSection()
 
     saveWork()
 
@@ -248,6 +265,7 @@ function currentTaskDone(){
         }
     });
     saveWork()
+    comming_from_go_deeper = false
     showPlanSection()
 }
 
@@ -263,30 +281,6 @@ function openNav() {
     document.getElementById("mySidenav").style.width = "0";
   }
 
-/* available constants
-  
-  login_button
-  login_screen
-  set_goal_screen
-  goal_input
-  main_goals_list_holder
-  set_goal_continue_btn
-  prioritizesection
-  prioritize_goals_list_holder
-  prioritize_continue
-  plan_section
-  top_goal
-  task_input
-  task_list_holder
-  continue_btn_on_plan
-  work_on_task_section
-  current_task
-  work_another_task_btn
-  notes_box
-  notes_input
-  convert_into_goal_button
-  done_button
-  */
 
 
 

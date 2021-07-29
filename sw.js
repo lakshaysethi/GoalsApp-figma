@@ -1,5 +1,5 @@
-const version = "3.2.4";
-const whatchanged = ' save work improved added check boxes dark mode improved fix keyboard shortcuts added firebase auth and firestore fixed display none, added closeNav() '
+const version = "3.3.4";
+const whatchanged = 'added go deeper button and functionality'
 const cacheName = 'goalsappcache';
 const contentToCache = [
   '/',

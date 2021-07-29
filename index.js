@@ -11,7 +11,6 @@ if (main_goals_array == undefined || main_goals_array == null){
 }
 
 
-
 // add arrow to all prioritize goals
 
 //if user is not logged in show login screen
@@ -49,7 +48,12 @@ prioritize_continue.onclick = showPlanSection
 task_input.addEventListener('keypress',(e)=>{
     if(e.key  == 'Enter' && task_input.value!=''){
         let task = new Goal(task_input.value)
-        main_goals_array[0].tasks_array.unshift(task)
+        // try {
+        //     current_goal_obj.tasks_array.unshift(task)
+        // } catch (error) {
+        //     main_goals_array[0].tasks_array.unshift(task)    
+        // }
+        current_goal_obj.tasks_array.unshift(task)
         task_input.value=''
         refreshTaskList()
     }
@@ -58,7 +62,7 @@ task_input.addEventListener('keypress',(e)=>{
 })
 
 
-
+//set initially maybe this is redundant and may cause problems :
 continue_btn_on_plan.onclick = showWorkOnTaskSection
 
 
@@ -83,6 +87,7 @@ notes_input.addEventListener('keypress',(e)=>{
 
 
 convert_into_goal_button.onclick = convert_current_task_into_main_goal
+go_deeper_btn.onclick = go_deeper
 
 
 

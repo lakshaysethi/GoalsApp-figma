@@ -59,10 +59,10 @@ const continue_btn_on_plan = document.getElementById('continue-btn-on-plan-secti
 const work_on_task_section = document.getElementById("work-on-task")
 
 const current_task = document.getElementById('current-task')
-
-
+let current_task_obj = {} // to be set when continue on task list  is clicked
+let current_goal_obj = {}
 const work_another_task_btn = document.getElementById('work-another')
-
+let comming_from_go_deeper = false
 const title= document.getElementsByTagName('title')[0]
 
 
@@ -72,6 +72,7 @@ const notes_input = document.getElementById('notes-input')
 
 
 const convert_into_goal_button = document.getElementById("convert-into-goal")
+const go_deeper_btn = document.getElementById("go_deeper_btn")
 
 
 
