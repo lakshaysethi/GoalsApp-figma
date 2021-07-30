@@ -152,6 +152,10 @@ function myfunc(e, up = "down") {
         //console.log("success")
         darkMode(1)
     }
+    if (altpressed && e.key == "n" && up == "down") {
+        //console.log("success")
+        openNav()
+    }
      
     //console.log(e.key,up,altpressed)
 

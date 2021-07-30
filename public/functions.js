@@ -274,7 +274,9 @@ function currentTaskDone(){
 
 
 function openNav() {
-    document.getElementById("mySidenav").style.width = "100%";
+    let mynav = document.getElementById("mySidenav")
+    mynav.style.width = "100%";
+    my_goals_nav_link.focus()
   }
   
   /* Set the width of the side navigation to 0 */

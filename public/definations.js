@@ -83,3 +83,6 @@ const body = document.getElementsByTagName('body')[0]
 
 const suggest_holder = document.getElementById('suggest-holder')
 
+
+
+const my_goals_nav_link = document.getElementById('my-goals-nav-link')
