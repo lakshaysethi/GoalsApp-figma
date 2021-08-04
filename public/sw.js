@@ -1,5 +1,5 @@
-const version = "3.3.6";
-const whatchanged = 'moved continue button up added keyboardshorts for navigation  added go deeper button and functionality'
+const version = "3.3.7";
+const whatchanged = 'goal checkbox moved continue button up added keyboardshorts for navigation  added go deeper button and functionality'
 const cacheName = 'goalsappcache';
 const contentToCache = [
   '/',

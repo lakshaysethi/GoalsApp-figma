@@ -61,6 +61,34 @@ function refreshGoalsList(showArch=0){
         }else{
             console.log(goal.name,"is", goal.archived, "and hence not displayed")
         }
+
+
+
+
+        let checkbox = document.createElement('input')
+        checkbox.setAttribute("type","checkbox")
+        checkbox.style.transform = "scale(3.0)"
+        goal_element.append(checkbox)
+        if (goal.achieved ){
+            checkbox.checked =true
+        }
+        checkbox.addEventListener("change",()=>{
+            if (checkbox.checked) {
+                goal.achieved =true
+                goal.notes += "\n" +getCurrentDateAndTimeString() +" goal checked off  " +"\n" 
+            } else {
+                goal.achieved =false
+                goal.notes += "\n" +getCurrentDateAndTimeString() +" goal unchecked  " +"\n" 
+
+            }
+            saveWork()
+        })
+
+
+
+
+
+
     });
     let totaldiv = document.createElement('div')
     totaldiv.innerText = totalnumberofgoalsdisplayed
