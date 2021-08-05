@@ -68,6 +68,7 @@ function refreshGoalsList(showArch=0){
         let checkbox = document.createElement('input')
         checkbox.setAttribute("type","checkbox")
         checkbox.style.transform = "scale(3.0)"
+        checkbox.style.width ="max-content"
         goal_element.append(checkbox)
         if (goal.achieved ){
             checkbox.checked =true
@@ -195,6 +196,7 @@ function  refreshTaskList(){
         let checkbox = document.createElement('input')
         checkbox.setAttribute("type","checkbox")
         checkbox.style.transform = "scale(3.0)"
+        checkbox.style.width ="max-content"
         task_element.append(checkbox)
         if (task.achieved ){
             checkbox.checked =true
