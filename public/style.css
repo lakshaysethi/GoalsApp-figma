@@ -79,3 +79,8 @@ input{
     transform: rotate(180deg);
     float: left;
 }
+
+
+body {
+    max-width: 500px;
+}
