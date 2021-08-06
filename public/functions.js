@@ -128,7 +128,7 @@ function refreshPrioritizeGoalsList(){
         let delete_button = document.createElement('div')
         let index_of_goal = main_goals_array.indexOf(goal)
         move_up.onclick = () => { moveItem(index_of_goal,0,main_goals_array); saveWork(); refreshPrioritizeGoalsList()}
-        move_down.onclick = ()=> { moveItem(index_of_goal,index_of_goal+1,main_goals_array); saveWork();refreshPrioritizeGoalsList()}
+        moveDown_arrow(move_down,index_of_goal,main_goals_array,refreshPrioritizeGoalsList);
         delete_button.onclick = () => {if(confirm('are yousure you want to delete?')){main_goals_array.splice(index_of_goal,1);refreshPrioritizeGoalsList()}}
         delete_button.classList.add("delete_button")
         delete_button.innerText = 'Del'
@@ -182,7 +182,7 @@ function  refreshTaskList(){
         let del_btn = document.createElement('div')
         let index_of_task = current_goal_obj.tasks_array.indexOf(task)
         move_up.onclick = () => { moveItem(index_of_task,0,current_goal_obj.tasks_array); saveWork();refreshTaskList()}
-        move_down.onclick = ()=> { moveItem(index_of_task,index_of_task+1,current_goal_obj.tasks_array) ;saveWork(); refreshTaskList()}
+        moveDown_arrow(move_down,index_of_task,current_goal_obj.tasks_array,refreshTaskList())
         del_btn.onclick = ()=> {if(confirm('are yousure you want to delete?')){current_goal_obj.tasks_array.splice(index_of_task,1);refreshTaskList()}}
         del_btn.classList.add('delete_button')
         del_btn.innerText = "Del"
@@ -425,6 +425,7 @@ async function downloadGoals(){
 
 
 
-
-
+function moveDown_arrow(move_down,index,array,refreshfunction){
+    move_down.onclick = ()=> { moveItem(index,array.length,array); saveWork();refreshfunction()}
+}
 
