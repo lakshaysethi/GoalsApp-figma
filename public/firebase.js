@@ -23,7 +23,7 @@ signInOptions: [
 
   callbacks: {
     signInSuccessWithAuthResult: function(authResult, redirectUrl) {
-      console.log(authResult, authResult.user.displayName, authResult.user.email, authResult.user.photoURL)
+      //console.log(authResult, authResult.user.displayName, authResult.user.email, authResult.user.photoURL)
       // User successfully signed in.
       user_auth_data.user_is_logged_in=true
       user_auth_data.user_name=authResult.user.displayName

@@ -44,7 +44,7 @@ function make_and_save_new_goal(goal_name){
 function refreshGoalsList(showArch=0){
     main_goals_list_holder.innerHTML =""
     let totalnumberofgoalsdisplayed = 0
-    main_goals_array.forEach(goal => {
+    main_goals_array.forEach((goal,index,arr) => {
         
         let goal_element = document.createElement('div')
         goal_element.classList.add('goal')
@@ -59,42 +59,23 @@ function refreshGoalsList(showArch=0){
             main_goals_list_holder.append(goal_element)
             totalnumberofgoalsdisplayed++
         }else{
-            console.log(goal.name,"is", goal.archived, "and hence not displayed")
+           // console.log(goal.name,"is", goal.archived, "and hence not displayed")
         }
 
-
-
-
-        let checkbox = document.createElement('input')
-        checkbox.setAttribute("type","checkbox")
-        checkbox.style.transform = "scale(3.0)"
-        checkbox.style.width ="max-content"
-        goal_element.append(checkbox)
-        if (goal.achieved ){
-            checkbox.checked =true
-        }
-        checkbox.addEventListener("change",()=>{
-            if (checkbox.checked) {
-                goal.achieved =true
-                goal.notes += "\n" +getCurrentDateAndTimeString() +" goal checked off  " +"\n" 
-            } else {
-                goal.achieved =false
-                goal.notes += "\n" +getCurrentDateAndTimeString() +" goal unchecked  " +"\n" 
-
-            }
-            saveWork()
-        })
-
-
-
-
-
+        checkbox(goal_element,goal,index,arr,"goal",showArch)
 
     });
     let totaldiv = document.createElement('div')
     totaldiv.innerText = totalnumberofgoalsdisplayed
     main_goals_list_holder.prepend(totaldiv)
 }
+
+
+
+
+
+
+
 function getArchiveBtn(){
 
     let archive_btn = document.createElement('button')
@@ -172,7 +153,7 @@ function showPlanSection(){
 
 function  refreshTaskList(){
     task_list_holder.innerHTML =""
-    current_goal_obj.tasks_array.forEach(task => {
+    current_goal_obj.tasks_array.forEach((task,index,arr) => {
         let task_element = document.createElement('div')
         task_element.classList.add('task')
         task_element.innerText = task.name
@@ -193,25 +174,7 @@ function  refreshTaskList(){
         task_element.append(del_btn)
 
 
-        let checkbox = document.createElement('input')
-        checkbox.setAttribute("type","checkbox")
-        checkbox.style.transform = "scale(3.0)"
-        checkbox.style.width ="max-content"
-        task_element.append(checkbox)
-        if (task.achieved ){
-            checkbox.checked =true
-        }
-        checkbox.addEventListener("change",()=>{
-            if (checkbox.checked) {
-                task.achieved =true
-                task.notes += "\n" +getCurrentDateAndTimeString() +" task checked off  " +"\n" 
-            } else {
-                task.achieved =false
-                task.notes += "\n" +getCurrentDateAndTimeString() +" task unchecked  " +"\n" 
-
-            }
-            saveWork()
-        })
+       checkbox(task_element,task,index,arr)
 
     });
 
@@ -414,7 +377,7 @@ async function downloadGoals(){
     const doc = await db.collection("users").doc(uid).get()
     if (doc.exists){
         const doc_data = await doc.data()
-        console.log("user's goals :",JSON.parse(doc_data.goals))
+        //console.log("user's goals :",JSON.parse(doc_data.goals))
         const firebase_goals_array = JSON.parse(doc_data.goals)
         main_goals_array = firebase_goals_array
         refreshGoalsList()
@@ -442,3 +405,42 @@ function moveDown_arrow(move_down,index,array,refreshfunction){
     }
 }
 
+
+
+
+
+function checkbox(element,goal,index,array,refresh="task",showArch){
+
+    let checkbox = document.createElement('input')
+    checkbox.setAttribute("type","checkbox")
+    checkbox.style.transform = "scale(3.0)"
+    checkbox.style.width ="max-content"
+
+
+
+    element.append(checkbox)
+    if (goal.achieved ){
+        checkbox.checked =true
+    }
+    checkbox.addEventListener("change",()=>{
+        if (checkbox.checked) {
+            //set goal as achieved
+            goal.achieved =true
+            goal.notes += "\n" +getCurrentDateAndTimeString() +" goal checked off  " +"\n" 
+            //move to bottom
+            moveItem(index,array.length,array)
+        } else {
+            
+            goal.achieved =false
+            goal.notes += "\n" +getCurrentDateAndTimeString() +" goal unchecked  " +"\n" 
+            moveItem(index,0,array)
+
+        }
+        saveWork()
+        if (refresh=="goal"){
+            refreshGoalsList(showArch)
+        }else{
+            refreshTaskList()
+        }
+    })
+}

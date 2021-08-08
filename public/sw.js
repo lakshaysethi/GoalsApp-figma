@@ -1,5 +1,5 @@
-const version = "3.4.1";
-const whatchanged = 'nav css and move down fix 2 fix css goal checkbox moved continue button up added keyboardshorts for navigation  added go deeper button and functionality'
+const version = "3.5.1";
+const whatchanged = 'checkbox move item nav css and move down fix 2 fix css goal checkbox moved continue button up added keyboardshorts for navigation  added go deeper button and functionality'
 const cacheName = 'goalsappcache';
 const contentToCache = [
   '/',
