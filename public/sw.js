@@ -1,5 +1,5 @@
-const version = "3.5.2";
-const whatchanged = ' added nav item - show prioritize goals section; checkbox move item nav css and move down fix 2 fix css goal checkbox moved continue button up added keyboardshorts for navigation  added go deeper button and functionality'
+const version = "3.6.2";
+const whatchanged = 'implemented search!  added nav item - show prioritize goals section; checkbox move item nav css and move down fix 2 fix css goal checkbox moved continue button up added keyboardshorts for navigation  added go deeper button and functionality'
 const cacheName = 'goalsappcache';
 const contentToCache = [
   '/',

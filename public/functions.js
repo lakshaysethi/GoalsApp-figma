@@ -312,18 +312,32 @@ function darkMode(bool){
 
 
 function suggest(text){
-    
-    // main_goals_array.forEach(goal=>{
-    //     if (text.search(goal.name)){
-    //         let dropdown = document.createElement('div')
-    //         let alreadyGoalDiv = document.createElement('div')
-    //         alreadyGoalDiv.innerText = goal.name
-    //         dropdown.prepend(alreadyGoalDiv)
-    //         suggest_holder.innerHTML =""
-    //         suggest_holder.append(dropdown)
-    //     }
+    if (text.length >3){
 
-    // })
+        main_goals_array.forEach(goal=>{
+            if (goal.name.toLowerCase().search(text.toLowerCase())!=-1){
+                let dropdown = document.createElement('div')
+                let alreadyGoalDiv = document.createElement('div')
+                alreadyGoalDiv.innerText = goal.name
+                alreadyGoalDiv.classList.add('goal')
+                let unarchive_button = document.createElement('button')
+                unarchive_button.innerText ="add below"
+                unarchive_button.onclick = () =>{goal.archived = !goal.archived; refreshGoalsList() ; saveWork();suggest_holder.innerHTML =""}
+                if (goal.archived){
+                    alreadyGoalDiv.append(unarchive_button)
+                }else{
+                    alreadyGoalDiv.innerHTML += "<br>"+" is in main goals"
+                }
+                console.log(goal.name)
+                dropdown.prepend(alreadyGoalDiv)
+                suggest_holder.innerHTML =""
+                suggest_holder.append(dropdown)
+            }
+    
+        })
+    }else{
+        suggest_holder.innerHTML =""
+    }
 
 }
 
