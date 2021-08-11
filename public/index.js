@@ -56,12 +56,13 @@ task_input.addEventListener('keypress',(e)=>{
         current_goal_obj.tasks_array.unshift(task)
         task_input.value=''
         refreshTaskList()
+        saveWork()
     }else {
         //suggest(task_input.value)
 
     }
         
-    saveWork()   
+    
 })
 
 
