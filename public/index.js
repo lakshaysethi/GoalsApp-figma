@@ -32,10 +32,11 @@ goal_input.addEventListener('keyup',(e)=>{
         make_and_save_new_goal(goal_input.value)
         goal_input.value=''
         refreshGoalsList()
+        saveWork()
     }else{
         suggest(goal_input.value)
     }
-    saveWork()
+    
 })
 
 
@@ -83,9 +84,10 @@ notes_input.addEventListener('keypress',(e)=>{
         current_task_obj.notes +=  current_date_and_time +' '+ notes_input.value + '\n'
         notes_input.value=''
         notes_box.innerText = current_task_obj.notes
+        saveWork()
     }
         
-    saveWork()
+    
 })
 
 
