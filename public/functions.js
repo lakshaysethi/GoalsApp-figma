@@ -21,6 +21,7 @@ function loginUserWithGoogle(firebase=1){
 }
 
 function showSetGoalsScreen(showArch=0){
+    comming_from_go_deeper = false
     goal_input.focus()
     set_goal_screen.style.display = 'block'
     work_on_task_section.style.display = 'none'

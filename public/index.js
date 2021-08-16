@@ -162,6 +162,10 @@ function myfunc(e, up = "down") {
         //console.log("success")
         openNav()
     }
+    if (goal_input !== document.activeElement && task_input !== document.activeElemen && e.key =='n' && up== 'down' ){
+        openNav()
+
+    }
      
     //console.log(e.key,up,altpressed)
 
