@@ -1,15 +1,19 @@
-const version = "3.7.2";
-const whatchanged = 'css; fix bug with task switching, add keyboard shortcut n ;fix bug save work;implemented search!  added nav item - show prioritize goals section; checkbox move item nav css and move down fix 2 fix css goal checkbox moved continue button up added keyboardshorts for navigation  added go deeper button and functionality'
+const version = "3.7.3";
+const whatchanged = 'changed cache policy;css; fix bug with task switching, add keyboard shortcut n ;fix bug save work;implemented search!  added nav item - show prioritize goals section; checkbox move item nav css and move down fix 2 fix css goal checkbox moved continue button up added keyboardshorts for navigation  added go deeper button and functionality'
 const cacheName = 'goalsappcache';
 const contentToCache = [
-  '/',
-  '/index.html',
   '/arrow.png',
+  '/data-sync-firebase-and-localStorage.js',
   '/definations.js',
-  '/index.js',
+  '/firebase.js',
   '/functions.js',
-  '/style.css',
+  '/goals.png',
+  '/index.html',
+  '/index.js',
+  '/manifest.json',
   '/side-nav-style.css',
+  '/style.css',
+  '/sw.js',
 ];
 self.addEventListener('activate', e => self.clients.claim());
 
