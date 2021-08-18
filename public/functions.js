@@ -313,8 +313,8 @@ function darkMode(bool){
 
 
 function suggest(text){
-    if (text.length >3){
-
+    if (text.length >2){
+        suggest_holder.innerHTML =""
         main_goals_array.forEach(goal=>{
             if (goal.name.toLowerCase().search(text.toLowerCase())!=-1){
                 let dropdown = document.createElement('div')
@@ -331,7 +331,6 @@ function suggest(text){
                 }
                 console.log(goal.name)
                 dropdown.prepend(alreadyGoalDiv)
-                suggest_holder.innerHTML =""
                 suggest_holder.append(dropdown)
             }
     
