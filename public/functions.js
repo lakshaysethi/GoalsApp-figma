@@ -138,6 +138,7 @@ function showPlanSection(){
     if (!comming_from_go_deeper){
 
         current_goal_obj = main_goals_array[0] // at this stage
+        add_analytics(current_goal_obj)
     }// else current_goal_obj is defined 
     console.log("current_goal_obj",current_goal_obj)
     refreshTaskList()
@@ -392,7 +393,7 @@ async function downloadGoals(){
     if (doc.exists){
         const doc_data = await doc.data()
         //console.log("user's goals :",JSON.parse(doc_data.goals))
-        const firebase_goals_array = JSON.parse(doc_data.goals)
+        const firebase_goals_array = (doc_data.goals)
         main_goals_array = firebase_goals_array
         refreshGoalsList()
     }else{
@@ -458,3 +459,45 @@ function checkbox(element,goal,index,array,refresh="task",showArch){
         }
     })
 }
+
+
+
+async function analytics(){
+    const uid = user_auth_data.user_unique_key
+    const doc = await db.collection("users").doc(uid).get()
+    if (doc.exists){
+        const doc_data = await doc.get("analytics")
+       
+        analytics_text = JSON.stringify(doc_data)
+        
+        
+        analytics_div.innerHTML = analytics_text
+        login_screen.style.display = 'none'
+        work_on_task_section.style.display = 'none'
+        set_goal_screen.style.display = 'none'
+        work_on_task_section.style.display = 'none'
+        login_screen.style.display = 'none'
+        prioritizesection.style.display = 'none'
+        work_on_task_section.style.display = 'none'
+        plan_section.style.display = 'none'
+        analytics_div.style.display = 'block'
+
+    }else{
+        console.log("error doc not found")
+    }
+}
+
+
+
+ // await db.collection("users").doc(user_auth_data.user_unique_key).update({"analytics":{"hello":"hi"}})
+     
+
+ function add_analytics(ana_obj){
+    let time = Date.now().toString()
+    obj = {}
+    obj[time] = ana_obj
+    all_analytics_data.array.push(obj)
+    db.collection("users").doc(user_auth_data.user_unique_key).update(all_analytics_data)
+     
+}
+
