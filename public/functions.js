@@ -323,7 +323,7 @@ function suggest(text){
                 alreadyGoalDiv.classList.add('goal')
                 let unarchive_button = document.createElement('button')
                 unarchive_button.innerText ="add below"
-                unarchive_button.onclick = () =>{goal.archived = !goal.archived; refreshGoalsList() ; saveWork();suggest_holder.innerHTML =""}
+                unarchive_button.onclick = () =>{goal.archived = !goal.archived;goal_input.value=""; refreshGoalsList() ; saveWork();suggest_holder.innerHTML =""}
                 if (goal.archived){
                     alreadyGoalDiv.append(unarchive_button)
                 }else{
