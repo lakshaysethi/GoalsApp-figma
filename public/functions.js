@@ -470,6 +470,7 @@ async function addTagToManicTime(tagName,notes,startTime,duration,token,manictim
     let headers = {
         'Accept': 'application/vnd.manictime.v2+json',
         'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
+        'Authorization': `Bearer ${token}`,
     }
     let tags_timeline_id = ''
     
