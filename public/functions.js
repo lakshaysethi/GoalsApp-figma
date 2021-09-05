@@ -461,64 +461,64 @@ function checkbox(element,goal,index,array,refresh="task",showArch){
 
 
 
-async function addTagToManicTime(tagName,notes,startTime,duration,token,manictimeserverurl){
-    if (startTime == 'now'){
-        startTime = new Date()
-        startTime.setHours(startTime.getHours()+12)
+// async function addTagToManicTime(tagName,notes,startTime,duration,token,manictimeserverurl){
+//     if (startTime == 'now'){
+//         startTime = new Date()
+//         startTime.setHours(startTime.getHours()+12)
         
-    }
-    let headers = {
-        'Accept': 'application/vnd.manictime.v2+json',
-        'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
-        'Authorization': `Bearer ${token}`,
-    }
-    let tags_timeline_id = ''
+//     }
+//     const myHeaders = new Headers();
+//     myHeaders.append('Accept', 'application/vnd.manictime.v2+json')
+//     myHeaders.append('Authorization', `Bearer ${token}`)
     
-    const rawResponse1 = await fetch(`${manictimeserverurl}/api/timelines`,headers=headers) 
-    let timelines = await rawResponse1.json()
-    console.log(timelines.timelines)
-    timelines.timelines.forEach(timeline =>{
+//     let tags_timeline_id = ''
+    
+//     const rawResponse1 = await fetch(`${manictimeserverurl}/api/timelines`,headers=myHeaders) 
+//     console.log(rawResponse1)
+//     let timelines = await rawResponse1.json()
+//     console.log(timelines.timelines)
+//     timelines.timelines.forEach(timeline =>{
 
-        if (timeline.schema.name == "ManicTime/Tags"){
+//         if (timeline.schema.name == "ManicTime/Tags"){
             
-            tags_timeline_id = timeline.timelineKey
-        }
-    })
+//             tags_timeline_id = timeline.timelineKey
+//         }
+//     })
 
     
 
 
     
     
-    let post_json = {
+//     let post_json = {
     
-        "values": {
-            "name": tagName,
-            "notes": notes,
-            "timeInterval": {
-                "start": startTime,
-                "duration": duration
-            }
-        }
-    }
-    let headers1 = {
-        'Accept': 'application/vnd.manictime.v3+json',
-        'Content-Type': 'application/vnd.manictime.v3+json',
-        'Authorization': `Bearer ${token}`,
-    }
-    // headers = JSON.stringify(headers1)
-    console.log('passed')
-    const rawResponse2 = await fetch(`${manictimeserverurl}/api/timelines/${tags_timeline_id}/activities`, {
-        method : 'POST',
-        headers:headers1,
-        body:JSON.stringify(post_json)
-    })
-    console.log('passed')
+//         "values": {
+//             "name": tagName,
+//             "notes": notes,
+//             "timeInterval": {
+//                 "start": startTime,
+//                 "duration": duration
+//             }
+//         }
+//     }
+//     let headers1 = {
+//         'Accept': 'application/vnd.manictime.v3+json',
+//         'Content-Type': 'application/vnd.manictime.v3+json',
+//         'Authorization': `Bearer ${token}`,
+//     }
+//     // headers = JSON.stringify(headers1)
+//     console.log('passed')
+//     const rawResponse2 = await fetch(`${manictimeserverurl}/api/timelines/${tags_timeline_id}/activities`, {
+//         method : 'POST',
+//         headers:headers1,
+//         body:JSON.stringify(post_json)
+//     })
+//     console.log('passed')
 
-    const content = await rawResponse2.json();
-    console.log('passed')
+//     const content = await rawResponse2.json();
+//     console.log('passed')
 
-    console.log(content);
-    console.log('passed')
+//     console.log(content);
+//     console.log('passed')
     
-}
+// }
