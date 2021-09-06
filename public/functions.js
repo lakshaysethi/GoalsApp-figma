@@ -327,6 +327,7 @@ function recursiveSearchThenDisplay(text,array,task =0,supergoal=undefined){
             let unarchive_button = document.createElement('button')
             unarchive_button.innerText ="add below"
             unarchive_button.onclick = () =>{
+                
                 goal.archived = !goal.archived;
                 goal_input.focus();
                 goal_input.value="";
@@ -340,8 +341,8 @@ function recursiveSearchThenDisplay(text,array,task =0,supergoal=undefined){
             }else{
                 if (task==1){
                     const higherGoalBtn = document.createElement('button')
-                    higherGoalBtn.innerHTML = supergoal.name
-                    higherGoalBtn.onclick = () => {suggest(supergoal.name)}
+                    higherGoalBtn.innerHTML = supergoal
+                    higherGoalBtn.onclick = () => {suggest(higherGoalBtn.innerHTML)}
                     alreadyGoalDiv.append(higherGoalBtn)
                 }else{
 
@@ -353,7 +354,7 @@ function recursiveSearchThenDisplay(text,array,task =0,supergoal=undefined){
             suggest_holder.append(dropdown)
         }
         if (goal.tasks_array.length>0){
-            recursiveSearchThenDisplay(text,goal.tasks_array,task = 1,supergoal = goal)
+            recursiveSearchThenDisplay(text,goal.tasks_array,task = 1,supergoal = goal.name)
         }
         
 
