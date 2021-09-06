@@ -312,29 +312,45 @@ function darkMode(bool){
 
 
 
+function recursiveSearchThenDisplay(text,array,task =0,supergoal=undefined){
+    array.forEach(goal=>{
+        if (goal.name.toLowerCase().search(text.toLowerCase())!=-1){
+            let dropdown = document.createElement('div')
+            let alreadyGoalDiv = document.createElement('div')
+            alreadyGoalDiv.innerText = goal.name
+            alreadyGoalDiv.classList.add('goal')
+            let unarchive_button = document.createElement('button')
+            unarchive_button.innerText ="add below"
+            unarchive_button.onclick = () =>{goal.archived = !goal.archived;goal_input.focus();goal_input.value=""; refreshGoalsList() ; saveWork();suggest_holder.innerHTML =""}
+            if (goal.archived){
+                alreadyGoalDiv.append(unarchive_button)
+            }else{
+                if (task==1){
+                    const higherGoalBtn = document.createElement('button')
+                    higherGoalBtn.innerHTML = supergoal.name
+                    higherGoalBtn.onclick = () => {suggest(supergoal.name)}
+                    alreadyGoalDiv.append(higherGoalBtn)
+                }else{
+
+                    alreadyGoalDiv.innerHTML += "<br>"+" is in main goals"
+                }
+            }
+            //console.log(goal.name)
+            dropdown.prepend(alreadyGoalDiv)
+            suggest_holder.append(dropdown)
+        }
+        if (goal.tasks_array.length>0){
+            recursiveSearchThenDisplay(text,goal.tasks_array,task = 1,supergoal = goal)
+        }
+        
+
+    })
+}
+
 function suggest(text){
     if (text.length >2){
         suggest_holder.innerHTML =""
-        main_goals_array.forEach(goal=>{
-            if (goal.name.toLowerCase().search(text.toLowerCase())!=-1){
-                let dropdown = document.createElement('div')
-                let alreadyGoalDiv = document.createElement('div')
-                alreadyGoalDiv.innerText = goal.name
-                alreadyGoalDiv.classList.add('goal')
-                let unarchive_button = document.createElement('button')
-                unarchive_button.innerText ="add below"
-    unarchive_button.onclick = () =>{goal.archived = !goal.archived;goal_input.focus();goal_input.value=""; refreshGoalsList() ; saveWork();suggest_holder.innerHTML =""}
-                if (goal.archived){
-                    alreadyGoalDiv.append(unarchive_button)
-                }else{
-                    alreadyGoalDiv.innerHTML += "<br>"+" is in main goals"
-                }
-                console.log(goal.name)
-                dropdown.prepend(alreadyGoalDiv)
-                suggest_holder.append(dropdown)
-            }
-    
-        })
+        recursiveSearchThenDisplay(text,main_goals_array)
     }else{
         suggest_holder.innerHTML =""
     }
@@ -349,7 +365,7 @@ async function saveuserDataToFireStore(){
 
     let user_data ={
         ...user_auth_data,
-        "goals":JSON.stringify(main_goals_array)
+        "goals":JSON.stringify()
     }
 
 
