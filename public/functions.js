@@ -321,7 +321,15 @@ function recursiveSearchThenDisplay(text,array,task =0,supergoal=undefined){
             alreadyGoalDiv.classList.add('goal')
             let unarchive_button = document.createElement('button')
             unarchive_button.innerText ="add below"
-            unarchive_button.onclick = () =>{goal.archived = !goal.archived;goal_input.focus();goal_input.value=""; refreshGoalsList() ; saveWork();suggest_holder.innerHTML =""}
+            unarchive_button.onclick = () =>{
+                goal.archived = !goal.archived;
+                goal_input.focus();
+                goal_input.value="";
+                refreshGoalsList() ;
+                saveWork();
+                suggest_holder.innerHTML ="";
+
+            }
             if (goal.archived){
                 alreadyGoalDiv.append(unarchive_button)
             }else{
@@ -365,7 +373,7 @@ async function saveuserDataToFireStore(){
 
     let user_data ={
         ...user_auth_data,
-        "goals":JSON.stringify()
+        "goals":JSON.stringify(main_goals_array)
     }
 
 
