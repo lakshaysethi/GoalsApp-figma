@@ -89,8 +89,11 @@ function getArchiveBtn(){
 
 function showPrioritizeSection(){
     if (main_goals_array.length>0){
-        login_screen.style.display = 'none'
         set_goal_screen.style.display = 'none'
+        work_on_task_section.style.display = 'none'
+        login_screen.style.display = 'none'
+        work_on_task_section.style.display = 'none'
+        plan_section.style.display = 'none'
         prioritizesection.style.display = 'block'
     }
     refreshPrioritizeGoalsList()
@@ -135,6 +138,7 @@ function moveItem(from, to,array) {
 
 
 function showPlanSection(){
+
     if (!comming_from_go_deeper){
 
         current_goal_obj = main_goals_array[0] // at this stage
@@ -146,7 +150,7 @@ function showPlanSection(){
     work_on_task_section.style.display = 'none'
     top_goal.forEach((element)=> element.innerText=current_goal_obj.name)
     saveWork()
-    title.innerText = current_task_obj.name + ' - Goals App'
+    title.innerText = current_task_obj.name + ' '+ current_goal_obj.name +' - Goals App'
 }
 
 
@@ -191,7 +195,8 @@ function showWorkOnTaskSection(){
         current_task.innerText = current_task_obj.name
         notes_box.innerText = current_task_obj.notes
     }
-    title.innerText = current_task_obj.name + ' - Goals App'
+    title.innerText = current_task_obj.name + ' '+ current_goal_obj.name +' - Goals App'
+
     saveWork()
 }
 
