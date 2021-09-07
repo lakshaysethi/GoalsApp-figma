@@ -139,13 +139,16 @@ function moveItem(from, to,array) {
 
 function showPlanSection(){
     let index_of_top_unarchieved_goal = 0
-    for (let index= 0 ;index_of_top_unarchieved_goal==0;index++){
-        if (!main_goals_array[index].archived){
-            if (index_of_top_unarchieved_goal == 0 ){
-                index_of_top_unarchieved_goal = index
+    if (main_goals_array[0].archived){
+        main_goals_array.forEach((goal,index)=>{
+            if (!goal.archived  ){
+                if (index_of_top_unarchieved_goal == 0 ){
+                    index_of_top_unarchieved_goal = index
+                }
             }
-        }
+        })
     }
+    
 
     
 
