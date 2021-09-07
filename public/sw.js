@@ -1,5 +1,5 @@
-const version = "3.8.0"
-const whatchanged = 'really improved search;improved search;typo;changed cache policy;css; fix bug with task switching, add keyboard shortcut n ;fix bug save work;implemented search!  added nav item - show prioritize goals section; checkbox move item nav css and move down fix 2 fix css goal checkbox moved continue button up added keyboardshorts for navigation  added go deeper button and functionality'
+const version = "3.8.1"
+const whatchanged = 'notes;really improved search;improved search;typo;changed cache policy;css; fix bug with task switching, add keyboard shortcut n ;fix bug save work;implemented search!  added nav item - show prioritize goals section; checkbox move item nav css and move down fix 2 fix css goal checkbox moved continue button up added keyboardshorts for navigation  added go deeper button and functionality'
 const cacheName = 'goalsappcache';
 const contentToCache = [
   '/arrow.png',
