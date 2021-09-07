@@ -138,10 +138,21 @@ function moveItem(from, to,array) {
 
 
 function showPlanSection(){
+    let index_of_top_unarchieved_goal = 0
+    for (let index= 0 ;index_of_top_unarchieved_goal==0;index++){
+        if (!main_goals_array[index].archived){
+            if (index_of_top_unarchieved_goal == 0 ){
+                index_of_top_unarchieved_goal = index
+            }
+        }
+    }
+
+    
+
 
     if (!comming_from_go_deeper){
 
-        current_goal_obj = main_goals_array[0] // at this stage
+        current_goal_obj = main_goals_array[index_of_top_unarchieved_goal] // at this stage
     }// else current_goal_obj is defined 
     console.log("current_goal_obj",current_goal_obj)
     refreshTaskList()
