@@ -206,7 +206,7 @@ function showWorkOnTaskSection(){
         current_task_obj = current_goal_obj.tasks_array[0]
         work_on_task_section.style.display = 'block'
         plan_section.style.display = 'none'
-        current_task.innerText = current_task_obj.name
+        current_task_div.innerText = current_task_obj.name
         notes_box.innerText = current_task_obj.notes
     }
     title.innerText = current_task_obj.name + ' '+ current_goal_obj.name +' - Goals App'
@@ -227,7 +227,7 @@ function getCurrentDateAndTimeString(){
 function convert_current_task_into_main_goal(){
     
     main_goals_array[0].tasks_array.forEach(task => {
-        if (task.name.trim() == current_task.innerText.trim()){
+        if (task.name.trim() == current_task_div.innerText.trim()){
             // add to main goal array
             main_goals_array.unshift(task)
             let index = main_goals_array[0].tasks_array.indexOf(task)
@@ -272,7 +272,7 @@ function saveWork(){
 
 function currentTaskDone(){
     main_goals_array[0].tasks_array.forEach(task => {
-        if (task.name.trim() == current_task.innerText.trim()){
+        if (task.name.trim() == current_task_div.innerText.trim()){
            task.achieved = true
            moveItem(0,main_goals_array[0].tasks_array.length,main_goals_array[0].tasks_array)
            task.notes += getCurrentDateAndTimeString() + ' ' + "DONE!" +"\n"

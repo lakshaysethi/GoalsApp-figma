@@ -77,7 +77,7 @@ notes_input.addEventListener('keypress',(e)=>{
         // let current_task_obj = undefined
         if (!current_task_obj){
             main_goals_array[0].tasks_array.forEach(task => {
-                if (task.name == current_task.innerText){
+                if (task.name == current_task_div.innerText){
                     current_task_obj = task
                 }
             });

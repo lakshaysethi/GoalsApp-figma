@@ -61,7 +61,7 @@ const continue_btn_on_plan = document.getElementById('continue-btn-on-plan-secti
 
 const work_on_task_section = document.getElementById("work-on-task")
 
-const current_task = document.getElementById('current-task')
+const current_task_div = document.getElementById('current-task')
 let current_task_obj = {} // to be set when continue on task list  is clicked
 let current_goal_obj = {}
 const work_another_task_btn = document.getElementById('work-another')
