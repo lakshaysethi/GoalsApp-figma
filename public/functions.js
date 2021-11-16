@@ -241,6 +241,24 @@ function convert_current_task_into_main_goal(){
 
 }
 
+
+
+function make_current_task_a_parent(child=''){
+    if (child==""){
+        showMakeParentScreen()
+    }else{
+        child.parents_array.append(current_task_obj)
+    }
+}
+function make_current_task_a_child(parent=''){
+    if (parent =""){
+        showMakeChildScreen()
+    }else{
+        current_task_obj.parents_array.append(parent)
+    }
+}
+
+
 function go_deeper(){
     current_goal_obj = current_task_obj
     comming_from_go_deeper = true
