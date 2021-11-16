@@ -241,24 +241,33 @@ function convert_current_task_into_main_goal(){
 
 }
 
-
-
-function make_current_task_a_parent(child){
-    child.parents_array.append(current_task_obj)
-}
-function make_current_task_a_child(parent){
-    current_task_obj.parents_array.append(parent)
+function getGoalByID(id_supplied,array){
+    result = "not found"
+        array.forEach((goal,index)=>{
+            if (goal.id == id_supplied){
+                result =  goal
+            }else{
+               return getGoalByID(id_supplied,goal.tasks_array)
+            }
+    
+        })
+    return result
 }
 
 function showMakeParentOrChildScreen(CorP){
     work_on_task_section.style.display = 'none'
-    if (CorP == "child"){
-        
-    }else if (CorP == "parent"){
+    makeChildOrParentSection.style.display = 'block'
+    document.getElementById('CorP').innerText = CorP +" of"
 
+    if (CorP == "child"){
+        child = getGoalByID(prompt("enter ID of goal"))
+    child.parents_array.append(current_task_obj)
+    }else if (CorP == "parent"){
+        parent = getGoalByID(prompt("enter ID of goal"))
+    // make this a parent of 
+    current_task_obj.parents_array.append(parent)
     }
 }
-
 
 function go_deeper(){
     current_goal_obj = current_task_obj
@@ -589,8 +598,18 @@ function checkbox(element,goal,index,array,refresh="task",showArch){
 function generate_goal_id(){
     //TODO do not allow this to run untill goals have been pulled from database and main goals array has been populated
     
-    if (main_goals_array.length=0){
+    if (main_goals_array.length==0){
         return 0
     }
     return main_goals_array.length  
+}
+
+function one_time_add_id_to_goals(array,start=0){
+    if (array == undefined){
+        array = main_goals_array
+    }
+    array.forEach((goal,index) => {
+        goal.id = index+start
+        return one_time_add_id_to_goals(goal.tasks_array,array.length)
+    });
 }
