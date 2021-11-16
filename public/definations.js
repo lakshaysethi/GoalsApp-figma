@@ -6,6 +6,7 @@ class Goal{
     }
     name = ''
     tasks_array = []
+    parents_array = []
     // priority = 0
     achieved = false
     archived = false
