@@ -3,7 +3,9 @@ const DEBUG =false
 class Goal{
     constructor(name){
         this.name = name
+        this.id = generate_goal_id()
     }
+    id = 0
     name = ''
     tasks_array = []
     parents_array = []

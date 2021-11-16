@@ -566,3 +566,12 @@ function checkbox(element,goal,index,array,refresh="task",showArch){
 //     console.log('passed')
     
 // }
+
+function generate_goal_id(){
+    // do not allow this to run untill goals have been pulled from database and main goals array has been populated
+    
+    if (main_goals_array.length=0){
+        return 0
+    }
+    return main_goals_array.length  
+}
