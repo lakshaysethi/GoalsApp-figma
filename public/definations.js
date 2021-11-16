@@ -75,8 +75,8 @@ const notes_input = document.getElementById('notes-input')
 
 
 const convert_into_goal_button = document.getElementById("convert-into-goal")
-const convert_into_goal_button = document.getElementById("make-child-btn")
-const convert_into_goal_button = document.getElementById("make-parent-btn")
+const make_child_button = document.getElementById("make-child-btn")
+const make_parent_button = document.getElementById("make-parent-btn")
 const go_deeper_btn = document.getElementById("go_deeper_btn")
 
 

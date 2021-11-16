@@ -94,6 +94,8 @@ notes_input.addEventListener('keypress',(e)=>{
 
 
 convert_into_goal_button.onclick = convert_current_task_into_main_goal
+make_child_button.onclick = make_current_task_a_parent
+make_parent_button.onclick = make_current_task_a_child
 go_deeper_btn.onclick = go_deeper
 
 
