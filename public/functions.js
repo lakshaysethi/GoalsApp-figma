@@ -243,18 +243,19 @@ function convert_current_task_into_main_goal(){
 
 
 
-function make_current_task_a_parent(event,child=''){
-    if (child==""){
-        showMakeParentScreen()
-    }else{
-        child.parents_array.append(current_task_obj)
-    }
+function make_current_task_a_parent(child){
+    child.parents_array.append(current_task_obj)
 }
-function make_current_task_a_child(event,parent=''){
-    if (parent ==""){
-        showMakeChildScreen()
-    }else{
-        current_task_obj.parents_array.append(parent)
+function make_current_task_a_child(parent){
+    current_task_obj.parents_array.append(parent)
+}
+
+function showMakeParentOrChildScreen(CorP){
+    work_on_task_section.style.display = 'none'
+    if (CorP == "child"){
+        
+    }else if (CorP == "parent"){
+
     }
 }
 
