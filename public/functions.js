@@ -243,15 +243,15 @@ function convert_current_task_into_main_goal(){
 
 
 
-function make_current_task_a_parent(child=''){
+function make_current_task_a_parent(event,child=''){
     if (child==""){
         showMakeParentScreen()
     }else{
         child.parents_array.append(current_task_obj)
     }
 }
-function make_current_task_a_child(parent=''){
-    if (parent =""){
+function make_current_task_a_child(event,parent=''){
+    if (parent ==""){
         showMakeChildScreen()
     }else{
         current_task_obj.parents_array.append(parent)
