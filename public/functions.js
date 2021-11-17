@@ -205,6 +205,7 @@ function showWorkOnTaskSection(){
     if (main_goals_array[0].tasks_array.length>0){
         current_task_obj = current_goal_obj.tasks_array[0]
         work_on_task_section.style.display = 'block'
+        makeChildOrParentSection.style.display = 'none'
         plan_section.style.display = 'none'
         current_task_div.innerText = current_task_obj.name
         notes_box.innerText = current_task_obj.notes
@@ -258,15 +259,20 @@ function showMakeParentOrChildScreen(CorP){
     work_on_task_section.style.display = 'none'
     makeChildOrParentSection.style.display = 'block'
     document.getElementById('CorP').innerText = CorP +" of"
-
-    if (CorP == "child"){
-        child = getGoalByID(prompt("enter ID of goal"))
-    child.parents_array.append(current_task_obj)
-    }else if (CorP == "parent"){
-        parent = getGoalByID(prompt("enter ID of goal"))
-    // make this a parent of 
-    current_task_obj.parents_array.append(parent)
+    let id_of_goal = prompt("enter ID of goal")
+    if (id_of_goal == undefined){
+        showWorkOnTaskSection()
+    }else{
+        if (CorP == "child"){
+            child = getGoalByID()
+        child.parents_array.append(current_task_obj)
+        }else if (CorP == "parent"){
+            parent = getGoalByID(prompt("enter ID of goal"))
+        // make this a parent of 
+        current_task_obj.parents_array.append(parent)
+        }
     }
+    
 }
 
 function go_deeper(){
