@@ -260,18 +260,19 @@ function showMakeParentOrChildScreen(CorP){
     makeChildOrParentSection.style.display = 'block'
     document.getElementById('CorP').innerText = CorP +" of"
     let id_of_goal = prompt("enter ID of goal")
-    if (id_of_goal == undefined){
-        showWorkOnTaskSection()
-    }else{
+    try{
         if (CorP == "child"){
-            child = getGoalByID()
+            child = getGoalByID(id_of_goal)
         child.parents_array.append(current_task_obj)
         }else if (CorP == "parent"){
-            parent = getGoalByID(prompt("enter ID of goal"))
+            parent = getGoalByID(id_of_goal)
         // make this a parent of 
         current_task_obj.parents_array.append(parent)
         }
+    }catch{
+        showWorkOnTaskSection()
     }
+    
     
 }
 
