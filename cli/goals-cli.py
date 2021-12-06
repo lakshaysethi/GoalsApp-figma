@@ -6,13 +6,16 @@ import json
 
 class Goal():
     def __init__(self,name):
+        self.uid = 
         self.name = name
         self.subgoals = []
         self.done = False
         self.created = datetime.datetime.now()
 
 def get_all_main_goals():
-    return [Goal('test goal 1')]
+    # read goals from database then return 
+    # an array 
+    return database.all_goals
 
 def main():
     print('Please select from the following:')
