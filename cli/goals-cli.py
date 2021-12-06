@@ -7,18 +7,12 @@ import json
 class Goal():
     def __init__(self,name):
         self.name = name
-        self.name = []
-        self.name = False
+        self.subgoals = []
+        self.done = False
         self.created = datetime.datetime.now()
-    
-    def to_json(self):
-        return json.dumps(self, default=lambda o: str(o), sort_keys=True, indent=4)
-
-
 
 def get_all_main_goals():
     return [Goal('test goal 1')]
-
 
 def main():
     print('Please select from the following:')
@@ -31,7 +25,8 @@ def main():
     elif selection == "1":
         print("here is a list of your goals")
         for goal in get_all_main_goals():
-            print (goal.to_json())
+            print (goal.name)
     elif selection == "3":
         id_of_selected_goal = input("please enter id of goal you want to work on or enter 'q' to go to main menu")
+
 main()
