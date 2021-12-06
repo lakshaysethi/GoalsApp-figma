@@ -15,6 +15,6 @@ def read_item(item_id: int, q: Optional[str] = None):
 
 @app.get("/goals/")
 def read_all():
-    
+    aray = []
     return array
 
