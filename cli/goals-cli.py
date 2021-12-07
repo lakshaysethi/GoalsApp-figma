@@ -9,6 +9,13 @@ from typing import Mapping,Dict
 from tinydb import TinyDB, Query
 
 database = TinyDB('cli.json')
+main_goals_array = database.all()
+
+
+def save_to_database():
+    database.truncate()
+    for goal in main_goals_array:
+        database.insert(goal)
 
 class Goal(Dict):
     def __init__(self,name):
@@ -17,8 +24,7 @@ class Goal(Dict):
         self["done"] = False
         # self["created"] = json.dumps(datetime.datetime.now(), indent=4, sort_keys=True, default=str)
         self["created"] = datetime.datetime.now().timestamp()
-def get_all_main_goals():
-    return database.all()
+
 
 def print_all_goals(goals_array):
     for index,goal in enumerate(goals_array):
@@ -61,14 +67,17 @@ def main():
         if selection == "2":
             goal_title = input("enter title of new goal\n")
             new_goal = Goal(goal_title)
-            database.insert(new_goal)
+            main_goals_array.append(new_goal)
+            save_to_database()
             print("added", goal_title)
         elif selection == "1":
             print("here is a list of your goals\nid name")
-            print_all_goals(get_all_main_goals())
+            print_all_goals(main_goals_array)
             return
         elif selection == "3":
-            work_on_goal(get_all_main_goals())
+            work_on_goal(main_goals_array)
         sleep(1)
         selection = input('\nPlease select from the following: \n1. List my goals\n2. add new goal\n3. work on a goal\nq. quit\n')
+    sleep(5)
+    save_to_database()
 main()
