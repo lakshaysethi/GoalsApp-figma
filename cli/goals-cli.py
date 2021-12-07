@@ -20,11 +20,11 @@ class Goal(Dict):
 def get_all_main_goals():
     return database.all()
 
-def print_all_goals(goals_array=get_all_main_goals()):
+def print_all_goals(goals_array):
     for index,goal in enumerate(goals_array):
         print (index+1,goal["name"])
 
-def work_on_goal(array_of_goals=get_all_main_goals()):
+def work_on_goal(array_of_goals):
     selected_goal =  get_user_to_select_a_goal(array_of_goals)
     if selected_goal==None: 
         print("not found")
@@ -44,7 +44,6 @@ def work_on_goal(array_of_goals=get_all_main_goals()):
         if todo =="q": return
         sub_goal = Goal(todo)
         selected_goal["subgoals"].append(sub_goal)
-        database.update(fields=selected_goal)
         
 def get_user_to_select_a_goal(array_of_goals):
     print("please select a goal to work on from the following")
@@ -66,9 +65,10 @@ def main():
             print("added", goal_title)
         elif selection == "1":
             print("here is a list of your goals\nid name")
-            print_all_goals()
+            print_all_goals(get_all_main_goals())
+            return
         elif selection == "3":
-            work_on_goal()
+            work_on_goal(get_all_main_goals())
         sleep(1)
         selection = input('\nPlease select from the following: \n1. List my goals\n2. add new goal\n3. work on a goal\nq. quit\n')
 main()
