@@ -1,7 +1,9 @@
-# from typing import Optional
+from typing import Optional, List
 from fastapi import FastAPI
 from tinydb import TinyDB, Query
 import uvicorn
+from pydantic import BaseModel
+
 db = TinyDB('db.json')
 
 # db.insert({'type': 'apple', 'count': 7})
@@ -11,6 +13,14 @@ db = TinyDB('db.json')
 # https://fastapi.tiangolo.com/tutorial/first-steps/
 
 app = FastAPI()
+class Goal(BaseModel):
+    name: str
+    description: Optional[str] = None
+    price: float
+
+@app.post("/items/", response_model=Goal)
+async def create_item(item: Goal):
+    return item
 
 @app.get("/")
 def read_root():
@@ -28,12 +38,10 @@ def read_all():
     return array
 
 
-@app.post("/goals/new")
-def create_new(name:str):
-    goal = {}
-    # goal.
-    # db.insert()
+@app.post("/goals/new", response_model=Goal)
+def create_new(goal:Goal):
+    return goal
 
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=58585)
