@@ -37,7 +37,7 @@ def work_on_goal(array_of_goals=get_all_main_goals()):
     choice = input("1. add more sub tasks \n2. work on one of the sub goals\n")
     if choice =="2":
          work_on_goal(selected_goal["subgoals"])
-    print(f"make a list of everything you can think of, that you can do  do to achieve {selected_goal}")
+    print(f"make a list of everything you can think of, that you can do  do to achieve {selected_goal['name']}")
     todo = "a"
     while todo !="q":
         todo = input("you can:\n")
@@ -49,14 +49,15 @@ def work_on_goal(array_of_goals=get_all_main_goals()):
 def get_user_to_select_a_goal(array_of_goals):
     print("please select a goal to work on from the following")
     print_all_goals(array_of_goals)
-    selection = int(input())-1
-    return array_of_goals[selection]
+    selection = input()
+    if selection == "q": return
+    return array_of_goals[int(selection)-1]
     
 
 
 
 def main():
-    selection = input('\nPlease select from the following: \n1. List my goals\n2. add new goal\n3. work on a goal\n')
+    selection = "a"
     while selection != 'q':
         if selection == "2":
             goal_title = input("enter title of new goal\n")
@@ -69,5 +70,5 @@ def main():
         elif selection == "3":
             work_on_goal()
         sleep(1)
-        main()
+        selection = input('\nPlease select from the following: \n1. List my goals\n2. add new goal\n3. work on a goal\nq. quit\n')
 main()
