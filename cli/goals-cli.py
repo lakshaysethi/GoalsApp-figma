@@ -39,7 +39,7 @@ def work_on_goal(array_of_goals):
     if len(selected_goal["subgoals"])>0:
         print("we have")
         for subgoal in selected_goal["subgoals"]:
-            print(subgoal["name"])
+            print("-",subgoal["name"])
     choice = input("1. add more sub tasks \n2. work on one of the sub goals\n")
     if choice =="2":
          work_on_goal(selected_goal["subgoals"])
