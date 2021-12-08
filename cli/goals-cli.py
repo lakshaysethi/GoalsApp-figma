@@ -72,11 +72,14 @@ def main():
             main_goals_array.append(new_goal)
             save_to_database()
             print("added", goal_title)
-        elif selection == "1":
-            print("here is a list of your goals\nid name")
-            print_all_goals(main_goals_array)
+        # elif selection == "1":
+        #     print("here is a list of your goals\nid name")
+        #     print_all_goals(main_goals_array)
         elif selection == "3":
             work_on_goal(main_goals_array)
         sleep(1)
-        selection = input('\nPlease select from the following: \n1. List my goals\n2. add new goal\n3. work on a goal\nq. quit\n')
+        selection = input('\nPlease select from the following: \
+        \n2. add new goal \
+        \n3. work on a goal\
+        \nq. quit\n')
 main()
