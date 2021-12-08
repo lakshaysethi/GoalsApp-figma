@@ -50,6 +50,8 @@ def work_on_goal(array_of_goals):
         if todo =="q": return
         sub_goal = Goal(todo)
         selected_goal["subgoals"].append(sub_goal)
+        save_to_database()
+
         
 def get_user_to_select_a_goal(array_of_goals):
     print("please select a goal to work on from the following")
@@ -73,11 +75,8 @@ def main():
         elif selection == "1":
             print("here is a list of your goals\nid name")
             print_all_goals(main_goals_array)
-            return
         elif selection == "3":
             work_on_goal(main_goals_array)
         sleep(1)
         selection = input('\nPlease select from the following: \n1. List my goals\n2. add new goal\n3. work on a goal\nq. quit\n')
-    sleep(5)
-    save_to_database()
 main()
