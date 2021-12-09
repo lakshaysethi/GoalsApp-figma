@@ -68,6 +68,7 @@ def main():
     while selection != 'q':
         if selection == "2":
             goal_title = input("enter title of new goal\n")
+            if goal_title == 'q': return main()
             new_goal = Goal(goal_title)
             main_goals_array.append(new_goal)
             save_to_database()
