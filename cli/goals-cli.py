@@ -11,6 +11,8 @@ from tinydb import TinyDB, Query
 database = TinyDB('cli.json')
 main_goals_array = database.all()
 
+def clear_screen():
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 def save_to_database():
     database.truncate()
@@ -35,12 +37,14 @@ def work_on_goal(array_of_goals):
     if selected_goal==None: 
         print("not found")
         return 
+    clear_screen()
     print("cool lets work on \n\n", selected_goal["name"])
     if len(selected_goal["subgoals"])>0:
         print("we have")
         for subgoal in selected_goal["subgoals"]:
             print("-",subgoal["name"])
     choice = input("1. add more sub tasks \n2. work on one of the sub goals\n")
+    clear_screen()
     if choice =="2":
          work_on_goal(selected_goal["subgoals"])
     print(f"make a list of everything you can think of, that you can do  do to achieve {selected_goal['name']}")
@@ -51,6 +55,7 @@ def work_on_goal(array_of_goals):
         sub_goal = Goal(todo)
         selected_goal["subgoals"].append(sub_goal)
         save_to_database()
+    clear_screen()
 
         
 def get_user_to_select_a_goal(array_of_goals):
@@ -67,6 +72,7 @@ def main():
     selection = "a"
     while selection != 'q':
         if selection == "2":
+            clear_screen()
             goal_title = input("enter title of new goal\n")
             if goal_title == 'q': return main()
             new_goal = Goal(goal_title)
@@ -79,6 +85,7 @@ def main():
         elif selection == "3":
             work_on_goal(main_goals_array)
         sleep(1)
+        clear_screen()
         selection = input('\nPlease select from the following: \
         \n2. add new goal \
         \n3. work on a goal\
