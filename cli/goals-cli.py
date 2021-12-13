@@ -66,8 +66,6 @@ def get_user_to_select_a_goal(array_of_goals):
     return array_of_goals[int(selection)-1]
     
 
-
-
 def main():
     selection = "a"
     while selection != 'q':
