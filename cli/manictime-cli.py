@@ -26,7 +26,8 @@ def add_to_manictime(tag,notes,start_time,end_time,duration=0):
         return print("please either give duration or endtime")
     elif end_time is not None:
         duration = round((end_time - start_time).total_seconds())
-        start_time2 = start_time - datetime.timedelta(seconds=duration)
+    else:
+        start_time2 = start_time2 - datetime.timedelta(seconds=duration)
     start = f"{start_time2.isoformat()}+{newzealnd}:00"
     post_json = json.dumps({
         "values":{
@@ -51,6 +52,7 @@ def main():
     tag = sys.argv[1]
     notes= sys.argv[2]
     duration = sys.argv[3]
+    print(getNow())
     add_to_manictime(tag,notes,getNow(),None,duration)
 
 main()
