@@ -10,6 +10,7 @@ def getNow():
 
 def add_to_manictime(tag,notes,start_time,end_time,duration=0):
     """ duration is in seconds """
+    
     headers = {
     'Accept': 'application/vnd.manictime.v2+json',
     'Authorization': f'Bearer {AUTH_TOKEN}',
@@ -20,11 +21,13 @@ def add_to_manictime(tag,notes,start_time,end_time,duration=0):
         if timeline['timelineType']['typeName'] =="ManicTime/Tags":
             tags_timeline_id = timeline['timelineId']
 
+    start_time2 = start_time
     if duration == 0 and end_time is None: 
         return print("please either give duration or endtime")
     elif end_time is not None:
         duration = round((end_time - start_time).total_seconds())
-    start = f"{start_time.isoformat()}+{newzealnd}:00"
+        start_time2 = start_time - datetime.timedelta(seconds=duration)
+    start = f"{start_time2.isoformat()}+{newzealnd}:00"
     post_json = json.dumps({
         "values":{
             "name": tag,
