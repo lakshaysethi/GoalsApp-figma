@@ -8,6 +8,9 @@ from time import sleep
 from typing import Mapping,Dict
 from tinydb import TinyDB, Query
 
+SERVER_LINK = 'https://manictime.lak.nz'
+AUTH_TOKEN = "5989585dc24846a6aaf2febe48e37879"
+newzealnd = 13
 database = TinyDB('cli.json')
 main_goals_array = database.all()
 
@@ -19,6 +22,8 @@ def save_to_database():
     for goal in main_goals_array:
         database.insert(goal)
 
+def getNow():
+    return datetime.datetime.utcnow()+ datetime.timedelta(hours=newzealnd)
 class Goal(Dict):
     def __init__(self,name):
         self["name"] = name
@@ -39,6 +44,7 @@ def work_on_goal(array_of_goals):
         return 
     clear_screen()
     print("cool lets work on \n\n", selected_goal["name"])
+    add_to_manictime("goal setting",selected_goal["name"],getNow(),None,1)
     if len(selected_goal["subgoals"])>0:
         print("we have")
         for index,subgoal in enumerate(selected_goal["subgoals"]):
@@ -55,7 +61,43 @@ def work_on_goal(array_of_goals):
         sub_goal = Goal(todo)
         selected_goal["subgoals"].append(sub_goal)
         save_to_database()
+        add_to_manictime("goal setting",selected_goal["name"]+"\n"+todo,getNow(),None,1)
     clear_screen()
+
+def add_to_manictime(tag,notes,start_time,end_time,duration=0):
+    """ duration is in seconds """
+    headers = {
+    'Accept': 'application/vnd.manictime.v2+json',
+    'Authorization': f'Bearer {AUTH_TOKEN}',
+    }
+    response = requests.get(f'{SERVER_LINK}/api/timelines', headers=headers)
+    timelines = json.loads(response.text)
+    for timeline in timelines['timelines']:
+        if timeline['timelineType']['typeName'] =="ManicTime/Tags":
+            tags_timeline_id = timeline['timelineId']
+
+    if duration == 0 and end_time is None: 
+        return print("please either give duration or endtime")
+    elif end_time is not None:
+        duration = round((end_time - start_time).total_seconds())
+    start = f"{start_time.isoformat()}+{newzealnd}:00"
+    post_json = json.dumps({
+        "values":{
+            "name": tag,
+            "notes":notes.strip(),
+            "timeInterval": {
+                "start": start,
+                "duration": duration
+            }
+        }
+    })
+    headers1 = {
+        'Accept': 'application/vnd.manictime.v3+json',
+        'Content-Type': 'application/vnd.manictime.v3+json',
+        'Authorization': f'Bearer {AUTH_TOKEN}',
+    }
+    response = requests.post(url=f'{SERVER_LINK}/api/timelines/{tags_timeline_id}/activities',data=post_json,headers=headers1)
+    # print(response.text)
 
         
 def get_user_to_select_a_goal(array_of_goals):
@@ -76,6 +118,7 @@ def main():
             new_goal = Goal(goal_title)
             main_goals_array.append(new_goal)
             save_to_database()
+            add_to_manictime("goal setting",new_goal["name"],getNow(),None,1)
             print("added", goal_title)
         # elif selection == "1":
         #     print("here is a list of your goals\nid name")
