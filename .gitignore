@@ -2,3 +2,4 @@ __pycache__/
 venv/
 cli/db.json
 cli.json
+cli/qna.json
