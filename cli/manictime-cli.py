@@ -27,7 +27,7 @@ def add_to_manictime(tag,notes,start_time,end_time,duration=0):
     elif end_time is not None:
         duration = round((end_time - start_time).total_seconds())
     else:
-        start_time2 = start_time2 - datetime.timedelta(seconds=duration)
+        start_time2 = start_time2 - datetime.timedelta(seconds=int(duration))
     start = f"{start_time2.isoformat()}+{newzealnd}:00"
     post_json = json.dumps({
         "values":{
