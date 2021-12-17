@@ -68,7 +68,7 @@ def work_on_goal(array_of_goals):
          work_on_goal(selected_goal["subgoals"])
     if choice == "6":
         toggle_hide(selected_goal["subgoals"])
-    print(f"make a list of everything you can think of, that you can do  do to achieve {selected_goal['name']}")
+    print(f"make a list of everything you can think of, that you can do to achieve {selected_goal['name']}")
     todo = "a"
     while todo !="q":
         todo = input("you can:\n")
