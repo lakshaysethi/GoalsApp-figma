@@ -46,7 +46,8 @@ def toggle_hide(array_of_goals):
 
 def print_all_goals(goals_array,hide=False):
     for index,goal in enumerate(goals_array):
-        print (index+1,goal["name"])
+        if not (hide and goal["done"]):
+            print (index+1,goal["name"], (not goal["done"]))
 
 def work_on_goal(array_of_goals):
     clear_screen()
@@ -65,6 +66,8 @@ def work_on_goal(array_of_goals):
     clear_screen()
     if choice =="2":
          work_on_goal(selected_goal["subgoals"])
+    if choice == "6":
+        toggle_hide(selected_goal["subgoals"])
     print(f"make a list of everything you can think of, that you can do  do to achieve {selected_goal['name']}")
     todo = "a"
     while todo !="q":
@@ -112,9 +115,6 @@ def add_to_manictime(tag,notes,start_time,end_time,duration=0):
     # print(response.text)
 
         
-def get_user_to_select_a_goal(array_of_goals):
-    print("please select a goal to work on from the following")
-    print_all_goals(array_of_goals)
 def get_user_to_select_a_goal(array_of_goals,verb="work on"):
     hide = True if verb == "work on" else False
     print(f"please select a goal to {verb} from the following")
