@@ -38,6 +38,7 @@ def print_all_goals(goals_array):
         print (index+1,goal["name"])
 
 def work_on_goal(array_of_goals):
+    clear_screen()
     selected_goal =  get_user_to_select_a_goal(array_of_goals)
     if selected_goal==None: 
         print("not found")
