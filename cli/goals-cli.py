@@ -44,7 +44,7 @@ def toggle_hide(array_of_goals):
     print("Changed")
     return
 
-def print_all_goals(goals_array):
+def print_all_goals(goals_array,hide=False):
     for index,goal in enumerate(goals_array):
         print (index+1,goal["name"])
 
