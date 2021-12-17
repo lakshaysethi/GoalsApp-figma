@@ -32,6 +32,17 @@ class Goal(Dict):
         # self["created"] = json.dumps(datetime.datetime.now(), indent=4, sort_keys=True, default=str)
         self["created"] = datetime.datetime.now().timestamp()
 
+def toggle_hide(array_of_goals):
+    clear_screen()
+    selected_goal =  get_user_to_select_a_goal(array_of_goals,verb="hide/unhide")
+    if selected_goal==None: 
+        print("not found")
+        return 
+    selected_goal["done"] = not selected_goal["done"]
+    save_to_database()
+    clear_screen()
+    print("Changed")
+    return
 
 def print_all_goals(goals_array):
     for index,goal in enumerate(goals_array):
@@ -104,6 +115,10 @@ def add_to_manictime(tag,notes,start_time,end_time,duration=0):
 def get_user_to_select_a_goal(array_of_goals):
     print("please select a goal to work on from the following")
     print_all_goals(array_of_goals)
+def get_user_to_select_a_goal(array_of_goals,verb="work on"):
+    hide = True if verb == "work on" else False
+    print(f"please select a goal to {verb} from the following")
+    print_all_goals(array_of_goals,hide)
     selection = input()
     if selection == "q": return
     return array_of_goals[int(selection)-1]
@@ -126,10 +141,13 @@ def main():
         #     print_all_goals(main_goals_array)
         elif selection == "3":
             work_on_goal(main_goals_array)
+        elif selection == "6":
+            toggle_hide(main_goals_array)
         sleep(1)
         clear_screen()
         selection = input('\nPlease select from the following: \
         \n2. add new goal \
         \n3. work on a goal\
+        \n6. hide/archive a goal\
         \nq. quit\n')
 main()
