@@ -70,7 +70,6 @@ def main():
             print("added", question_title)
         elif selection == "3":
             work_on_Question(main_questions_array)
-        sleep(1)
         clear_screen()
         selection = input('\nPlease select from the following: \
         \n2. add new Question \
