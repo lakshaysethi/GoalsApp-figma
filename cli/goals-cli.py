@@ -143,7 +143,7 @@ def main():
             work_on_goal(main_goals_array)
         elif selection == "6":
             toggle_hide(main_goals_array)
-        sleep(1)
+        # sleep(1)
         clear_screen()
         selection = input('\nPlease select from the following: \
         \n2. add new goal \
