@@ -4,6 +4,13 @@ function showLoginScreen(){
     set_goal_screen.style.display = 'none'
 }
 
+function archieve_or_un_all(archive_all=true){
+    main_goals_array.forEach((goal)=>{
+        goal.archived=archive_all
+    })
+    saveWork()
+    showSetGoalsScreen()
+}
 
 function loginUserWithGoogle(firebase=1){
         
