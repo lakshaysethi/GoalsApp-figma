@@ -1,0 +1,4 @@
+fastapi
+requests
+tinydb
+uvicorn
