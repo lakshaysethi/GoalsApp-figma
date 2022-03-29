@@ -3,7 +3,7 @@ from firebase_admin import credentials
 from firebase_admin import firestore
 
 # Use a service account
-cred = credentials.Certificate('/home/ubuntu/lakshay/GoalsApp-figma/sandbox/tensile-rite-345521-ee8201120995.json')
+cred = credentials.Certificate('./secret.json')
 firebase_admin.initialize_app(cred)
 
 db = firestore.client()
