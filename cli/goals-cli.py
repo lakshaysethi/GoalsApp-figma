@@ -58,8 +58,8 @@ def work_on_goal(array_of_goals):
     clear_screen()
     print("cool lets work on \n\n", selected_goal["name"])
     add_to_manictime("goal setting",selected_goal["name"],getNow(),None,1)
+    print("\n\na. add more sub tasks \nb. work on one of the sub goals\nc. hide or unhide a sub-goal\n\n\n")
     if len(selected_goal["subgoals"])>0:
-        print("\n\na. add more sub tasks \nb. work on one of the sub goals\nc. hide or unhide a sub-goal\n\n\n")
         print("we have")
         for index,subgoal in enumerate(selected_goal["subgoals"]):
             print(" -",subgoal["name"])
