@@ -59,10 +59,11 @@ def work_on_goal(array_of_goals):
     print("cool lets work on \n\n", selected_goal["name"])
     add_to_manictime("goal setting",selected_goal["name"],getNow(),None,1)
     if len(selected_goal["subgoals"])>0:
+        print("\n\na. add more sub tasks \nb. work on one of the sub goals\nc. hide or unhide a sub-goal\n\n\n")
         print("we have")
         for index,subgoal in enumerate(selected_goal["subgoals"]):
-            print(index+1,"-",subgoal["name"])
-    choice = input("\n\n\n\n\n1. add more sub tasks \nb. work on one of the sub goals\nc. hide or unhide a sub-goal\n\n")
+            print(" -",subgoal["name"])
+    choice = input("\n\n\nchoose from a,b,c or q: ")
     clear_screen()
     if choice =="b":
          work_on_goal(selected_goal["subgoals"])
@@ -79,6 +80,8 @@ def work_on_goal(array_of_goals):
             save_to_database()
             add_to_manictime("goal setting",selected_goal["name"]+"\n"+todo,getNow(),None,1)
         clear_screen()
+    if choice == "q":
+        return
     else:
         print("please make the correct selection")
         sleep(1)
