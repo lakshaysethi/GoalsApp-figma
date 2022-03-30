@@ -62,22 +62,28 @@ def work_on_goal(array_of_goals):
         print("we have")
         for index,subgoal in enumerate(selected_goal["subgoals"]):
             print(index+1,"-",subgoal["name"])
-    choice = input("\n\n\n\n\n1. add more sub tasks \n2. work on one of the sub goals\n6. hide or unhide a sub-goal\n\n")
+    choice = input("\n\n\n\n\n1. add more sub tasks \nb. work on one of the sub goals\nc. hide or unhide a sub-goal\n\n")
     clear_screen()
-    if choice =="2":
+    if choice =="b":
          work_on_goal(selected_goal["subgoals"])
-    if choice == "6":
+    if choice == "c":
         toggle_hide(selected_goal["subgoals"])
-    print(f"make a list of everything you can think of, that you can do to achieve {selected_goal['name']}")
-    todo = "a"
-    while todo !="q":
-        todo = input("you can:\n")
-        if todo =="q": return
-        sub_goal = Goal(todo)
-        selected_goal["subgoals"].append(sub_goal)
-        save_to_database()
-        add_to_manictime("goal setting",selected_goal["name"]+"\n"+todo,getNow(),None,1)
-    clear_screen()
+    if choice == "a":
+        print(f"make a list of everything you can think of, that you can do to achieve {selected_goal['name']}")
+        todo = "a"
+        while todo !="q":
+            todo = input("you can:\n")
+            if todo =="q": return
+            sub_goal = Goal(todo)
+            selected_goal["subgoals"].append(sub_goal)
+            save_to_database()
+            add_to_manictime("goal setting",selected_goal["name"]+"\n"+todo,getNow(),None,1)
+        clear_screen()
+    else:
+        print("please make the correct selection")
+        sleep(1)
+        return
+
 
 def add_to_manictime(tag,notes,start_time,end_time,duration=0):
     """ duration is in seconds """
