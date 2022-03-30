@@ -131,20 +131,24 @@ def get_user_to_select_a_goal(array_of_goals,verb="work on"):
     selection = input()
     if selection == "q": return
     return array_of_goals[int(selection)-1]
-    
+
+def add_new_goal():
+    clear_screen()
+    goal_title = input("enter title of new goal\n")
+    if goal_title == 'q': return main()
+    new_goal = Goal(goal_title)
+    main_goals_array.append(new_goal)
+    save_to_database()
+    add_to_manictime("goal setting",new_goal["name"],getNow(),None,1)
+    print("added", goal_title)
+    sleep(0.3)
+    return add_new_goal()
 
 def main():
     selection = "a"
     while selection != 'q':
         if selection == "2":
-            clear_screen()
-            goal_title = input("enter title of new goal\n")
-            if goal_title == 'q': return main()
-            new_goal = Goal(goal_title)
-            main_goals_array.append(new_goal)
-            save_to_database()
-            add_to_manictime("goal setting",new_goal["name"],getNow(),None,1)
-            print("added", goal_title)
+           add_new_goal()
         # elif selection == "1":
         #     print("here is a list of your goals\nid name")
         #     print_all_goals(main_goals_array)
