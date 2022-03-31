@@ -144,7 +144,7 @@ def add_new_goal():
     goal_title = input("enter title of new goal\n")
     if goal_title == 'q': return main()
     new_goal = Goal(goal_title)
-    tag = input("enter a mt tag for this goal")
+    tag = input("enter a mt tag for this goal\n")
     new_goal['mttag']= tag
     main_goals_array.append(new_goal)
     save_to_database()
