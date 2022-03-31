@@ -31,6 +31,7 @@ class Goal(Dict):
         self["done"] = False
         # self["created"] = json.dumps(datetime.datetime.now(), indent=4, sort_keys=True, default=str)
         self["created"] = datetime.datetime.now().timestamp()
+        self["mttag"]=""
 
 def toggle_hide(array_of_goals):
     clear_screen()
@@ -57,7 +58,7 @@ def work_on_goal(array_of_goals):
         return 
     clear_screen()
     print("cool lets work on \n\n", selected_goal["name"])
-    add_to_manictime("goal setting",selected_goal["name"],getNow(),None,1)
+    add_to_manictime(get_mt_tag(selected_goal),selected_goal["name"],getNow(),None,1)
     print("\n\na. add more sub tasks \nb. work on one of the sub goals\nc. hide or unhide a sub-goal\n\n\n")
     if len(selected_goal["subgoals"])>0:
         print("we have")
@@ -76,9 +77,10 @@ def work_on_goal(array_of_goals):
             todo = input("you can:\n")
             if todo =="q": return
             sub_goal = Goal(todo)
+            sub_goal['mttag']=selected_goal['mttag']
             selected_goal["subgoals"].append(sub_goal)
             save_to_database()
-            add_to_manictime("goal setting",selected_goal["name"]+"\n"+todo,getNow(),None,1)
+            add_to_manictime(get_mt_tag(selected_goal),selected_goal["name"]+"\n"+todo,getNow(),None,1)
         clear_screen()
     if choice == "q":
         return
@@ -132,14 +134,21 @@ def get_user_to_select_a_goal(array_of_goals,verb="work on"):
     if selection == "q": return
     return array_of_goals[int(selection)-1]
 
+def get_mt_tag(goal):
+    if goal["mttag"] !="":
+        return goal["mttag"]
+    return "goal setting"
+
 def add_new_goal():
     clear_screen()
     goal_title = input("enter title of new goal\n")
     if goal_title == 'q': return main()
     new_goal = Goal(goal_title)
+    tag = input("enter a mt tag for this goal")
+    new_goal['mttag']= tag
     main_goals_array.append(new_goal)
     save_to_database()
-    add_to_manictime("goal setting",new_goal["name"],getNow(),None,1)
+    add_to_manictime(get_mt_tag(new_goal),new_goal["name"],getNow(),None,1)
     print("added", goal_title)
     sleep(0.3)
     return add_new_goal()
