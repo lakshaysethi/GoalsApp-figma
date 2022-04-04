@@ -10,7 +10,7 @@ from tinydb import TinyDB, Query
 
 SERVER_LINK = 'https://manictime.lak.nz'
 AUTH_TOKEN = "5989585dc24846a6aaf2febe48e37879"
-newzealnd = 13
+newzealnd = 12
 database = TinyDB('cli.json')
 main_goals_array = database.all()
 
