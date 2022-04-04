@@ -57,21 +57,21 @@ def work_on_goal(array_of_goals):
         print("not found")
         return 
     clear_screen()
-    print("cool lets work on \n\n", selected_goal["name"])
+    print("cool lets work on \n", selected_goal["name"])
     add_to_manictime(get_mt_tag(selected_goal),selected_goal["name"],getNow(),None,1)
-    print("\n\na. add more sub tasks \nb. work on one of the sub goals\nc. hide or unhide a sub-goal\n\n\n")
+    print("\n\na. add more sub tasks \nb. work on one of the sub goals\nc. hide or unhide a sub-goal\n")
     if len(selected_goal["subgoals"])>0:
         print("we have")
         for index,subgoal in enumerate(selected_goal["subgoals"]):
             print(" -",subgoal["name"])
-    choice = input("\n\n\nchoose from a,b,c or q: ")
+    choice = input("\nchoose from a,b,c or q: ")
     clear_screen()
     if choice =="b":
          work_on_goal(selected_goal["subgoals"])
     if choice == "c":
         toggle_hide(selected_goal["subgoals"])
     if choice == "a":
-        print(f"make a list of everything you can think of, that you can do to achieve {selected_goal['name']}")
+        print(f"{selected_goal['name']} \n make a list of everything you can think of, that you can do to achieve: \n {selected_goal['name']}")
         todo = "a"
         while todo !="q":
             todo = input("you can:\n")
