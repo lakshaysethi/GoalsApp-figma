@@ -86,3 +86,5 @@ const suggest_holder = document.getElementById('suggest-holder')
 
 
 const my_goals_nav_link = document.getElementById('my-goals-nav-link')
+
+const wholedoc = document.documentElement;

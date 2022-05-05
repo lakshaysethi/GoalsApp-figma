@@ -511,6 +511,15 @@ function checkbox(element,goal,index,array,refresh="task",showArch){
 }
 
 
+function makefullscreen(){
+  if (wholedoc.requestFullscreen) {
+    wholedoc.requestFullscreen();
+  } else if (wholedoc.webkitRequestFullscreen) { /* Safari */
+    wholedoc.webkitRequestFullscreen();
+  } else if (wholedoc.msRequestFullscreen) { /* IE11 */
+    wholedoc.msRequestFullscreen();
+  }
+}
 
 // async function addTagToManicTime(tagName,notes,startTime,duration,token,manictimeserverurl){
 //     if (startTime == 'now'){
