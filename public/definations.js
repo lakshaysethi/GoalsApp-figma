@@ -12,7 +12,8 @@ class Goal{
     notes = ''
 }
 
-let syncallowed = true //its 20k per day not month bro! 
+// let syncallowed = true //its 20k per day not month bro! 
+let syncallowed = false
 
 let main_goals_array = []
 const login_button = document.getElementById('login-with-google')
