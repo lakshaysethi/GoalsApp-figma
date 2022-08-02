@@ -27,6 +27,10 @@ function loginUserWithGoogle(firebase=1){
 
 }
 
+function userLikesDarkMode(){
+    return False
+}
+
 function showSetGoalsScreen(showArch=0){
     comming_from_go_deeper = false
     goal_input.focus()
