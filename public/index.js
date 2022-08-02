@@ -121,6 +121,9 @@ if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').match
 }
 
 
+if (user_likes_dark_mode == true) {
+    darkMode(1)
+}
 
 
 
