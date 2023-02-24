@@ -49,6 +49,9 @@ function make_and_save_new_goal(goal_name){
     main_goals_array.unshift(goal)
 }
 
+
+const make_child
+
 function refreshGoalsList(showArch=0){
     main_goals_list_holder.innerHTML =""
     let totalnumberofgoalsdisplayed = 0
@@ -59,6 +62,9 @@ function refreshGoalsList(showArch=0){
         goal_element.innerText = goal.name
         let archive_btn = getArchiveBtn()
         archive_btn.onclick = () =>{goal.archived = !showArch;refreshGoalsList(showArch); saveWork()}
+        goal_element.append(archive_btn)
+        let make_child_button = getMakeChildBtn()
+        make_child_button.onclick = 
         goal_element.append(archive_btn)
         if (showArch && goal.archived) {
             main_goals_list_holder.append(goal_element)
