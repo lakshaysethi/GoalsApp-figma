@@ -10,6 +10,7 @@ class Goal{
     achieved = false
     archived = false
     notes = ''
+    parents= []
 }
 
 let syncallowed = true //its 20k per day not month bro! 
