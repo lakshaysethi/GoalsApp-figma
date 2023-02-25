@@ -50,7 +50,44 @@ function make_and_save_new_goal(goal_name){
 }
 
 
-const make_child
+const make_child = (parent_goal, child_goal) => {
+    parent_goal.tasks_array.push(child_goal)
+    take_subgoal_out_of_main_list(child_goal)
+    saveWork()
+    showSetGoalsScreen()
+
+}
+
+
+function getMakeChildBtn(){
+    let make_child_button = document.createElement('button')
+    make_child_button.innerText = "make subgoal"
+    make_child_button.style.padding = "0rem 1rem"
+    make_child_button.style.float = "left"
+    make_child_button.style.margin = 0
+    return make_child_button
+}
+
+function ask_user_for_parent_goal(child){
+    text = "Enter id of parent goal\n"
+    text += "choose from the following list"
+    main_goals_array.forEach((goal,index,arr) => {
+        if (goal != child) {
+            text += `\n${index} : ${goal.name}`
+        }
+    })
+
+    let parent_goal_id = prompt(text)
+    return main_goals_array[parent_goal_id]
+}
+
+function take_subgoal_out_of_main_list(subgoal){
+    main_goals_array.forEach((goal,index,arr) => {
+        if (goal == subgoal){
+            arr.splice(index,1)
+        }
+    })
+}
 
 function refreshGoalsList(showArch=0){
     main_goals_list_holder.innerHTML =""
@@ -64,7 +101,13 @@ function refreshGoalsList(showArch=0){
         archive_btn.onclick = () =>{goal.archived = !showArch;refreshGoalsList(showArch); saveWork()}
         goal_element.append(archive_btn)
         let make_child_button = getMakeChildBtn()
-        make_child_button.onclick = 
+        make_child_button.onclick = () => {
+            make_child(ask_user_for_parent_goal(goal),goal)
+            saveWork()
+            showSetGoalsScreen()
+        }
+        goal_element.append(make_child_button)
+        
         goal_element.append(archive_btn)
         if (showArch && goal.archived) {
             main_goals_list_holder.append(goal_element)

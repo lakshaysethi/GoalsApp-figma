@@ -9,7 +9,6 @@ class Goal{
     achieved = false
     archived = false
     notes = ''
-    parents= [] // so that we can group goals under a parent goal
 }
 
 let syncallowed = true //its 20k per day not month bro! 
