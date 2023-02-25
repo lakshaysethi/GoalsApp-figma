@@ -6,7 +6,6 @@ class Goal{
     }
     name = ''
     tasks_array = []
-    // priority = 0
     achieved = false
     archived = false
     notes = ''
