@@ -99,7 +99,6 @@ function refreshGoalsList(showArch=0){
         goal_element.innerText = goal.name
         let archive_btn = getArchiveBtn()
         archive_btn.onclick = () =>{goal.archived = !showArch;refreshGoalsList(showArch); saveWork()}
-        goal_element.append(archive_btn)
         let make_child_button = getMakeChildBtn()
         make_child_button.onclick = () => {
             make_child(ask_user_for_parent_goal(goal),goal)
