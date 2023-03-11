@@ -19,7 +19,6 @@
     <div class="toggle-side-nav-button" onclick="openNav()">-></div>
     <nav class="sidenav" id="mySidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <!-- <a href="#">About</a> -->
         <a id='my-goals-nav-link' href="javascript:void(0)" onclick="showSetGoalsScreen();  closeNav() ">My Goals</a>
         <a id='my-goals-nav-link' href="javascript:void(0)" onclick="showPrioritizeSection();  closeNav() ">prioritize my goals</a>
         <a href="javascript:void(0)" onclick="showSetGoalsScreen(1);  closeNav() ">My Archieved Goals</a>
@@ -33,18 +32,21 @@
         <br><br>
         <a href="javascript:void(0)" >Version 3.8.2</a>
         <small>main - notes fix </small>
-        <!-- <p style ='color: white;' ></p> -->
-        <!-- <a href="#">Logout</a> -->
     </nav>
-    
+    <!-- maintainence note -->
+    <div id="maintainence-note">
+        <div>Sorry for the inconvenience, we are currently working on the app, it will be back soon!</div>
+        <div>Thank you for your patience</div>
+        <div>Please contact lakshay if you have any questions <a href="https://t.me/lakshaynz">https://t.me/lakshaynz</a></div>
+    </div>
     <div style="display: none;"  id="login-screen">
         <div id="login-text">
             Welcome to Goals App!
             One place to manage and achieve all your goals
         </div>
 
-        <div style="display: none;" id="login-with-google">Offline login Mode</div>
-<!--        OR -->
+        <div style="display: block;" id="login-with-google">Offline login Mode</div>
+       OR
         <div id="firebaseui-auth-container"></div>
         <div id="loader">Loading...</div>
     </div>
