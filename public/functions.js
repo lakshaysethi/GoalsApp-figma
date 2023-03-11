@@ -317,7 +317,7 @@ function getMainGoalsArray(){
 function saveWork(){
     localStorage.setItem("ga",JSON.stringify(main_goals_array))
     if(user_auth_data.user_unique_key!="" && syncallowed ){
-        saveuserDataToFireStore()
+        saveuserDataToDatabase()
     }
 }
 
@@ -444,13 +444,12 @@ function suggest(text){
 
 
 
-async function saveuserDataToFireStore(){
+async function saveuserDataToDatabase(){
 
     let user_data ={
         ...user_auth_data,
         "goals":JSON.stringify(main_goals_array)
     }
-
 
     return await db.collection("users").doc(user_auth_data.user_unique_key).set(user_data)
         
