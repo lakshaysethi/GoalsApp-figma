@@ -457,6 +457,7 @@ async function saveuserDataToDatabase(){
 
 }
 
+
 async function getUserGoals(uid){
     console.log("redundent function called")
    downloadGoals()

@@ -15,7 +15,6 @@
 
     <link rel="apple-touch-startup-image" href="icons/apple-splash-2048-2732.jpg"
         media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
-
 </head>
 
 <body>
@@ -52,9 +51,12 @@
 
         <div style="display: block;" id="login-with-google">Offline login Mode</div>
         OR
-        <div id="g_id_onload" data-client_id="YOUR_GOOGLE_CLIENT_ID"
-            data-login_uri="https://your.domain/your_login_endpoint" data-your_own_param_1_to_login="any_value"
-            data-your_own_param_2_to_login="any_value">
+        <div id="g_id_onload" data-client_id="667648358864-mddbhmv1u7mtqa4j44rk6berdli3rohf.apps.googleusercontent.com"
+            data-context="use" data-ux_mode="popup" data-callback="onSignIn" data-itp_support="true">
+        </div>
+
+        <div class="g_id_signin" data-type="standard" data-shape="rectangular" data-theme="outline"
+            data-text="signin_with" data-size="large" data-logo_alignment="left">
         </div>
     </div>
 
@@ -110,7 +112,12 @@
     <script src="functions.js"></script>
     <script src="definations.js"></script>
     <script src="index.js"></script>
-    <!-- <script src="tests.js"></script> -->
+    <script>
+        function onSignIn(googleUser) {
+            console.log(googleUser)
+        }
+    </script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
 
 </body>
 
