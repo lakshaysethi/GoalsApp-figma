@@ -174,9 +174,5 @@ function myfunc(e, up = "down") {
 
 }
 
-// Alt+H is go list of priority
-
-
-// 
-
+darkMode(1)
 
