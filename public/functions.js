@@ -306,18 +306,35 @@ function go_deeper(){
 
 }
 
+function database_getItem(key){
+    if (DATABASE == "browserStorage"){
+       return localStorage.getItem(key)
+    }else if (DATABASE == "api"){
+        // get from api
+
+    }
+}
+
+function database_setItem(key,value){
+    if (DATABASE == "browserStorage"){
+       return localStorage.setItem(key,value)
+    }else if (DATABASE == "api"){
+        // get from api
+
+    }
+}
 
 function getMainGoalsArray(){
-    let arraystring = localStorage.getItem('ga')
+    let arraystring = database_getItem('ga')
     let main_g_arra=  JSON.parse(arraystring)
     return main_g_arra
 }
 
 
 function saveWork(){
-    localStorage.setItem("ga",JSON.stringify(main_goals_array))
+    database_setItem("ga",JSON.stringify(main_goals_array))
     if(user_auth_data.user_unique_key!="" && syncallowed ){
-        saveuserDataToFireStore()
+        saveuserDataToDatabase()
     }
 }
 
@@ -444,19 +461,19 @@ function suggest(text){
 
 
 
-async function saveuserDataToFireStore(){
+async function saveuserDataToDatabase(){
 
     let user_data ={
         ...user_auth_data,
         "goals":JSON.stringify(main_goals_array)
     }
 
-
     return await db.collection("users").doc(user_auth_data.user_unique_key).set(user_data)
         
     
 
 }
+
 
 async function getUserGoals(uid){
     console.log("redundent function called")
@@ -468,23 +485,23 @@ async function getUserGoals(uid){
 
 
 function signOut(){
-
     if (user_auth_data.user_is_logged_in){
         console.log('logging out')
-
-        firebase.auth().signOut().then(res=>console.log(res))
+        if (! prompt("are you sure you want to sign out? this will delete all your data from local/browser storage")){
+            return
+        }
         localStorage.clear()
-        location.reload()
         user_auth_data.user_is_logged_in = false
         user_auth_data = undefined
+        location.reload()
     }
-    // .then(res=>{if res.})
 }
 
 
 
 
 async function downloadGoals(){
+    return
     if (syncallowed){
     const uid = user_auth_data.user_unique_key
     const doc = await db.collection("users").doc(uid).get()

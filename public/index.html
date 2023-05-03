@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,22 +13,17 @@
     <meta name="theme-color" content="#4285f4">
     <meta name="apple-mobile-web-app-capable" content="yes">
 
-    <link rel="apple-touch-startup-image" href="icons/apple-splash-2048-2732.jpg" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
-
-    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-auth.js"></script> 
-    <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
-    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
-
+    <link rel="apple-touch-startup-image" href="icons/apple-splash-2048-2732.jpg"
+        media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
 </head>
+
 <body>
     <div class="toggle-side-nav-button" onclick="openNav()">-></div>
     <nav class="sidenav" id="mySidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <!-- <a href="#">About</a> -->
         <a id='my-goals-nav-link' href="javascript:void(0)" onclick="showSetGoalsScreen();  closeNav() ">My Goals</a>
-        <a id='my-goals-nav-link' href="javascript:void(0)" onclick="showPrioritizeSection();  closeNav() ">prioritize my goals</a>
+        <a id='my-goals-nav-link' href="javascript:void(0)" onclick="showPrioritizeSection();  closeNav() ">prioritize
+            my goals</a>
         <a href="javascript:void(0)" onclick="showSetGoalsScreen(1);  closeNav() ">My Archieved Goals</a>
         <a href="javascript:void(0)" onclick="saveWork();  closeNav() ">Save Data</a>
         <a href="javascript:void(0)" onclick="darkMode(1);  closeNav() ">dark mode ON</a>
@@ -37,66 +33,76 @@
         <a href="javascript:void(0)" onclick="archieve_or_un_all(true)();  closeNav() ">archieve all goals</a>
         <a href="javascript:void(0)" onclick="makefullscreen();  closeNav() ">fullscreen</a>
         <br><br>
-        <a href="javascript:void(0)" >Version 3.8.1</a>
-        <small>notes fix </small>
-        <!-- <p style ='color: white;' ></p> -->
-        <!-- <a href="#">Logout</a> -->
+        <div id="maintainence-note">
+            <div>Please contact lakshay if you have any questions <a
+                    href="https://t.me/lakshaynz">https://t.me/lakshaynz</a></div>
+        </div>
     </nav>
-    
-    <div style="display: none;"  id="login-screen">
+    <!-- maintainence note -->
+
+    <div style="display: none;" id="login-screen">
         <div id="login-text">
             Welcome to Goals App!
             One place to manage and achieve all your goals
         </div>
 
-        <div style="display: none;" id="login-with-google">Offline login Mode</div>
-<!--        OR -->
-        <div id="firebaseui-auth-container"></div>
-        <div id="loader">Loading...</div>
+        <div style="display: block;" id="login-with-google">Offline login Mode</div>
+        OR
+        <div style="display: block;" id="login-with-google-real">
+            <div id="g_id_onload" data-client_id="667648358864-mddbhmv1u7mtqa4j44rk6berdli3rohf.apps.googleusercontent.com"
+                data-context="use" data-ux_mode="popup" data-callback="onSignIn" data-itp_support="true">
+            </div>
+
+            <div class="g_id_signin" data-type="standard" data-shape="rectangular" data-theme="outline"
+                data-text="signin_with" data-size="large" data-logo_alignment="center">
+            </div>
+        </div>
+        <div>google login is not functional atm, I'm working on it, pls use offline mode until then</div>
     </div>
 
     <div style="display: none;" id="make-list-of-goals">
-        <div>Start with making a list of your goals / what do you want to do? / what do you want to invest your time in? </div>
+        <div>Start with making a list of your goals / what do you want to do? / what do you want to invest your time in?
+        </div>
         <input id="goal-input" type="text" placeholder="I want to...">
         <div id="suggest-holder"></div>
-        <button id="set-goal-continue-btn" >Continue</button>
+        <button id="set-goal-continue-btn">Continue</button>
         <div id="goals-list-holder">
             <!-- <div class="goal"> I want to make ...</div> -->
         </div>
     </div>
     <div style="display: none;" id="prioritize-goals">
-        <div class="prioritize-goal-text">Sweet now lets prioritize  your list of goals!</div>
-        <button id="continue-on-prioritise-section-button"  >Continue</button>
+        <div class="prioritize-goal-text">Sweet now lets prioritize your list of goals!</div>
+        <button id="continue-on-prioritise-section-button">Continue</button>
         <div id="prioriteze-goals-list-holder">
             <div class="priritize-goal">I want to earn 1000$...</div>
         </div>
-        
+
     </div>
     <div style="display: none;" id="plan-for-top-goal">
         <div>Awesome Now lets work on your top priority goal</div>
         <div class="top-priority-goal goal">i wan to </div>
         <div>Make a list of everything you can do to achieve this goal</div>
         <input id="task-input" placeholder="I can ..." type="text" name="" id="">
-        <button id= 'continue-btn-on-plan-section'>Continue</button>
-        <div id ="task-list-holder">
+        <button id='continue-btn-on-plan-section'>Continue</button>
+        <div id="task-list-holder">
             <!-- <div class="task">apply for jobs</div> -->
         </div>
     </div>
     <div style="display: none;" id="work-on-task">
         <div class="top-priority-goal goal">make 1000$ a day</div>
         <div>Great! lets now work on the goal! </div>
-        <div id ="current-task" class="task">apply for jobs</div>
+        <div id="current-task" class="task">apply for jobs</div>
         <div>Notes</div>
-        <input id="notes-input" placeholder="I did ... I have a problem..."  type="text">
+        <input id="notes-input" placeholder="I did ... I have a problem..." type="text">
         <div id="notes">
             <!-- july 4 2020 i applied for job -->
         </div>
         <button id="convert-into-goal">Convert this task into a goal</button>
         <button id="go_deeper_btn">Go Deeper</button>
-        <button id = 'work-another'>Work on another task</button>
-        <button id= "done-button"  >Done!</button>
+        <button id='work-another'>Work on another task</button>
+        <button id="done-button">Done!</button>
     </div>
-    <div style ="display: none;"  id="goal-achieved-question">
+    <div style="display: none;" id="goal-achieved-question">
         <div class="goal">I want to make 1000$ a day</div>
         <div>Wow you did all the things on the list to achieve this goal!</div>
         <button>Goal Achieved!</button>
@@ -105,10 +111,14 @@
 
     <script src="functions.js"></script>
     <script src="definations.js"></script>
-<script src="firebase.js"></script>
-<script src="data-sync-firebase-and-localStorage.js"></script>
-<script src="index.js"></script>
-<!-- <script src="tests.js"></script> -->
+    <script src="index.js"></script>
+    <script>
+        function onSignIn(googleUser) {
+            console.log(googleUser)
+        }
+    </script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
 
 </body>
+
 </html>
