@@ -1,7 +1,6 @@
-if (localStorage.getItem("auth")){
-    user_auth_data = JSON.parse(localStorage.getItem("auth"))
 
-
+if (database_getItem("auth")){
+    user_auth_data = database_getItem("auth")
 }
 console.log(user_auth_data)
 
@@ -11,9 +10,6 @@ if (main_goals_array == undefined || main_goals_array == null){
 }
 
 
-// add arrow to all prioritize goals
-
-//if user is not logged in show login screen
 
 if (!user_auth_data.user_is_logged_in){
     showLoginScreen()
@@ -49,11 +45,6 @@ prioritize_continue.onclick = showPlanSection
 task_input.addEventListener('keypress',(e)=>{
     if(e.key  == 'Enter' && task_input.value!=''){
         let task = new Goal(task_input.value)
-        // try {
-        //     current_goal_obj.tasks_array.unshift(task)
-        // } catch (error) {
-        //     main_goals_array[0].tasks_array.unshift(task)    
-        // }
         current_goal_obj.tasks_array.unshift(task)
         task_input.value=''
         refreshTaskList()

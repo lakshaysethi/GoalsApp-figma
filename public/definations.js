@@ -1,5 +1,5 @@
 const DEBUG =false
-
+const DATABASE = "browserStorage"
 class Goal{
     constructor(name){
         this.name = name
