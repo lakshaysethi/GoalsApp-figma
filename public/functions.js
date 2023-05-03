@@ -307,10 +307,8 @@ function go_deeper(){
 }
 
 function database_getItem(key){
-    // assert that key is a string 
-    assert (typeof key == "string")
     if (DATABASE == "browserStorage"){
-        localStorage.getItem(key)
+       return localStorage.getItem(key)
     }else if (DATABASE == "api"){
         // get from api
 
@@ -318,10 +316,8 @@ function database_getItem(key){
 }
 
 function database_setItem(key,value){
-    // assert that key is a string 
-    assert (typeof key == "string")
     if (DATABASE == "browserStorage"){
-        localStorage.setItem(key,value)
+       return localStorage.setItem(key,value)
     }else if (DATABASE == "api"){
         // get from api
 
@@ -505,6 +501,7 @@ function signOut(){
 
 
 async function downloadGoals(){
+    return
     if (syncallowed){
     const uid = user_auth_data.user_unique_key
     const doc = await db.collection("users").doc(uid).get()
