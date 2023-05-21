@@ -338,7 +338,7 @@ const database_getItem=(key)=>{
        return localStorage.getItem(key)
     }else if (DATABASE == "api"){
         // get from api
-
+        return goalsapi.get(key)
     }
 }
 
@@ -346,10 +346,38 @@ const database_setItem=(key,value)=>{
     if (DATABASE == "browserStorage"){
        return localStorage.setItem(key,value)
     }else if (DATABASE == "api"){
-        // get from api
-
+        // set to api
+        return goalsapi.set(key,value)
     }
 }
+
+// goalsapi.set
+const goalsapi = {
+    set:(key,value)=>{
+        let url = "https://api.goals.lak.nz/set"
+        let data = {key:key,value:value}
+        fetch(url,{
+            method:"POST",
+            body:JSON.stringify(data)
+        }).then((response)=>response.json())
+        .then((data)=>{
+            console.log(data)
+        })
+    }
+    ,
+    get:(key)=>{
+        let url = "https://api.goals.lak.nz/get"
+        let data = {key:key}
+        fetch(url,{
+            method:"POST",
+            body:JSON.stringify(data)
+        }).then((response)=>response.json())
+        .then((data)=>{
+            console.log(data)
+        })
+    }
+}
+
 
 const getMainGoalsArray=()=>{
     let arraystring = database_getItem('ga')
