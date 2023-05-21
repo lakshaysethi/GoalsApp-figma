@@ -27,6 +27,14 @@ function loginUserWithGoogle(firebase=1){
 
 }
 
+function login_user(googleUser){
+    user_auth_data.user_is_logged_in = true
+    user_auth_data.user_name = googleUser.getBasicProfile().getName()
+    user_auth_data.user_email = googleUser.getBasicProfile().getEmail()
+    user_auth_data.user_image_url = googleUser.getBasicProfile().getImageUrl()
+    
+}
+
 function showSetGoalsScreen(showArch=0){
     comming_from_go_deeper = false
     goal_input.focus()
