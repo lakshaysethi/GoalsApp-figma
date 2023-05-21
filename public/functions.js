@@ -1,10 +1,11 @@
-function showLoginScreen(){
+const showLoginScreen=()=>{
     login_screen.style.display = 'block'
     work_on_task_section.style.display = 'none'
     set_goal_screen.style.display = 'none'
 }
 
-function archieve_or_un_all(archive_all=true){
+
+const archieve_or_un_all=(archive_all=true)=>{
     main_goals_array.forEach((goal)=>{
         goal.archived=archive_all
     })
@@ -12,7 +13,7 @@ function archieve_or_un_all(archive_all=true){
     showSetGoalsScreen()
 }
 
-function loginUserWithGoogle(firebase=1){
+const loginUserWithGoogle=(firebase=0)=>{
         
     if (firebase){
         if (user_auth_data.user_is_logged_in){
@@ -27,15 +28,35 @@ function loginUserWithGoogle(firebase=1){
 
 }
 
-function login_user(googleUser){
+const login_user = (googleUser) => {
     user_auth_data.user_is_logged_in = true
     user_auth_data.user_name = googleUser.getBasicProfile().getName()
     user_auth_data.user_email = googleUser.getBasicProfile().getEmail()
     user_auth_data.user_image_url = googleUser.getBasicProfile().getImageUrl()
+    user_auth_data.user_unique_key = googleUser.getBasicProfile().getId()
+    loginUserWithGoogle()
+    showUserProfileButton()
+
     
 }
+const showUserProfileButton=()=>{
+    let profile_button = document.createElement('img')
+    profile_button.src = user_auth_data.user_image_url
+    profile_button.style.width = "2rem"
+    profile_button.style.height = "2rem"
+    profile_button.style.borderRadius = "50%"
+    profile_button.style.float = "right"
+    profile_button.style.margin = "0.5rem"
+    profile_button.style.cursor = "pointer"
+    profile_button.onclick = ()=>{
+        alert("showing user profile")
+    }
+    login_button_offline.replaceWith(profile_button)
 
-function showSetGoalsScreen(showArch=0){
+}
+
+
+const showSetGoalsScreen=(showArch=0)=>{
     comming_from_go_deeper = false
     goal_input.focus()
     set_goal_screen.style.display = 'block'
@@ -52,7 +73,7 @@ function showSetGoalsScreen(showArch=0){
     // closeNav()
 }
 
-function make_and_save_new_goal(goal_name){
+const make_and_save_new_goal=(goal_name)=>{
     let goal = new Goal(goal_name)
     main_goals_array.unshift(goal)
 }
@@ -67,7 +88,7 @@ const make_child = (parent_goal, child_goal) => {
 }
 
 
-function getMakeChildBtn(){
+const getMakeChildBtn=()=>{
     let make_child_button = document.createElement('button')
     make_child_button.innerText = "make subgoal"
     make_child_button.style.padding = "0rem 1rem"
@@ -76,7 +97,7 @@ function getMakeChildBtn(){
     return make_child_button
 }
 
-function ask_user_for_parent_goal(child){
+const ask_user_for_parent_goal=(child)=>{
     text = "Enter id of parent goal\n"
     text += "choose from the following list"
     main_goals_array.forEach((goal,index,arr) => {
@@ -89,7 +110,7 @@ function ask_user_for_parent_goal(child){
     return main_goals_array[parent_goal_id]
 }
 
-function take_subgoal_out_of_main_list(subgoal){
+const take_subgoal_out_of_main_list=(subgoal)=>{
     main_goals_array.forEach((goal,index,arr) => {
         if (goal == subgoal){
             arr.splice(index,1)
@@ -97,7 +118,7 @@ function take_subgoal_out_of_main_list(subgoal){
     })
 }
 
-function refreshGoalsList(showArch=0){
+const refreshGoalsList=(showArch=0)=>{
     main_goals_list_holder.innerHTML =""
     let totalnumberofgoalsdisplayed = 0
     main_goals_array.forEach((goal,index,arr) => {
@@ -140,7 +161,7 @@ function refreshGoalsList(showArch=0){
 
 
 
-function getArchiveBtn(){
+const getArchiveBtn=()=>{
 
     let archive_btn = document.createElement('button')
     archive_btn.innerText = "🗃️"
@@ -150,7 +171,7 @@ function getArchiveBtn(){
     return archive_btn
 }
 
-function showPrioritizeSection(){
+const showPrioritizeSection=()=>{
     if (main_goals_array.length>0){
         set_goal_screen.style.display = 'none'
         work_on_task_section.style.display = 'none'
@@ -163,7 +184,7 @@ function showPrioritizeSection(){
     saveWork()
 }
 
-function refreshPrioritizeGoalsList(){
+const refreshPrioritizeGoalsList=()=>{
     prioritize_goals_list_holder.innerHTML =""
     main_goals_array.forEach(goal => {
         if (!goal.archived){
@@ -194,13 +215,13 @@ function refreshPrioritizeGoalsList(){
 }
 
 
-function moveItem(from, to,array) {
+const moveItem=(from, to,array) =>{
   var f = array.splice(from, 1)[0];
   array.splice(to, 0, f);
 }
 
 
-function showPlanSection(){
+const showPlanSection=()=>{
     let index_of_top_unarchieved_goal = 0
     if (main_goals_array[0].archived){
         main_goals_array.forEach((goal,index)=>{
@@ -233,7 +254,7 @@ function showPlanSection(){
 
 
 
-function  refreshTaskList(){
+const  refreshTaskList=()=>{
     task_list_holder.innerHTML =""
     current_goal_obj.tasks_array.forEach((task,index,arr) => {
         let task_element = document.createElement('div')
@@ -263,7 +284,7 @@ function  refreshTaskList(){
 }
 
 
-function showWorkOnTaskSection(){
+const showWorkOnTaskSection=()=>{
     if (!current_task_obj ) current_goal_obj = main_goals_array[0]
     if (main_goals_array[0].tasks_array.length>0){
         current_task_obj = current_goal_obj.tasks_array[0]
@@ -279,7 +300,7 @@ function showWorkOnTaskSection(){
 
 
 
-function getCurrentDateAndTimeString(){
+const getCurrentDateAndTimeString=()=>{
     let now = new Date()
     now = now.toString()
     return now.slice(4,24)
@@ -287,7 +308,7 @@ function getCurrentDateAndTimeString(){
 
 
 
-function convert_current_task_into_main_goal(){
+const convert_current_task_into_main_goal=()=>{
     
     main_goals_array[0].tasks_array.forEach(task => {
         if (task.name.trim() == current_task.innerText.trim()){
@@ -304,7 +325,7 @@ function convert_current_task_into_main_goal(){
 
 }
 
-function go_deeper(){
+const go_deeper=()=>{
     current_goal_obj = current_task_obj
     comming_from_go_deeper = true
 
@@ -314,7 +335,7 @@ function go_deeper(){
 
 }
 
-function database_getItem(key){
+const database_getItem=(key)=>{
     if (DATABASE == "browserStorage"){
        return localStorage.getItem(key)
     }else if (DATABASE == "api"){
@@ -323,7 +344,7 @@ function database_getItem(key){
     }
 }
 
-function database_setItem(key,value){
+const database_setItem=(key,value)=>{
     if (DATABASE == "browserStorage"){
        return localStorage.setItem(key,value)
     }else if (DATABASE == "api"){
@@ -332,14 +353,14 @@ function database_setItem(key,value){
     }
 }
 
-function getMainGoalsArray(){
+const getMainGoalsArray=()=>{
     let arraystring = database_getItem('ga')
     let main_g_arra=  JSON.parse(arraystring)
     return main_g_arra
 }
 
 
-function saveWork(){
+const saveWork=()=>{
     database_setItem("ga",JSON.stringify(main_goals_array))
     if(user_auth_data.user_unique_key!="" && syncallowed ){
         saveuserDataToDatabase()
@@ -350,7 +371,7 @@ function saveWork(){
 
 
 
-function currentTaskDone(){
+const currentTaskDone=()=>{
     main_goals_array[0].tasks_array.forEach(task => {
         if (task.name.trim() == current_task.innerText.trim()){
            task.achieved = true
@@ -366,7 +387,7 @@ function currentTaskDone(){
 
 
 
-function openNav() {
+const openNav=() =>{
     let mynav = document.getElementById("mySidenav")
     mynav.style.width = "100%";
     mynav.style.maxWidth = '500px'
@@ -374,7 +395,7 @@ function openNav() {
   }
   
   /* Set the width of the side navigation to 0 */
-  function closeNav() {
+  const closeNav=() =>{
     document.getElementById("mySidenav").style.width = "0";
   }
 
@@ -382,7 +403,7 @@ function openNav() {
 
 
 
-function darkMode(bool){
+const darkMode=(bool)=>{
     
     
     if(bool){
@@ -411,7 +432,7 @@ function darkMode(bool){
 
 
 
-function recursiveSearchThenDisplay(text,array,task =0,supergoal=undefined){
+const recursiveSearchThenDisplay=(text,array,task =0,supergoal=undefined)=>{
     array.forEach(goal=>{
         if (goal.name.toLowerCase().search(text.toLowerCase())!=-1){
             let dropdown = document.createElement('div')
@@ -455,7 +476,7 @@ function recursiveSearchThenDisplay(text,array,task =0,supergoal=undefined){
     })
 }
 
-function suggest(text){
+const suggest=(text)=>{
     if (text.length >2){
         suggest_holder.innerHTML =""
         recursiveSearchThenDisplay(text,main_goals_array)
@@ -469,7 +490,7 @@ function suggest(text){
 
 
 
-async function saveuserDataToDatabase(){
+const saveuserDataToDatabase=async ()=>{
 
     let user_data ={
         ...user_auth_data,
@@ -483,8 +504,8 @@ async function saveuserDataToDatabase(){
 }
 
 
-async function getUserGoals(uid){
-    console.log("redundent function called")
+ const getUserGoals=async (uid)=>{
+    console.log("redundent const called=")
    downloadGoals()
 }
 
@@ -492,7 +513,7 @@ async function getUserGoals(uid){
 
 
 
-function signOut(){
+const signOut=()=>{
     if (user_auth_data.user_is_logged_in){
         console.log('logging out')
         if (! prompt("are you sure you want to sign out? this will delete all your data from local/browser storage")){
@@ -508,7 +529,7 @@ function signOut(){
 
 
 
-async function downloadGoals(){
+const downloadGoals= async ()=>{
     return
     if (syncallowed){
     const uid = user_auth_data.user_unique_key
@@ -527,14 +548,14 @@ async function downloadGoals(){
 
 
 
-function moveDown_arrow_onClick(move_down,index,array,refreshfunction){
-    if (refreshfunction == "goal"){
+const moveDown_arrow_onClick=(move_down,index,array,refreshfunction)=>{
+    if (refreshconst === "goal"){
         move_down.onclick = () => {
             moveItem(index,array.length,array); 
             saveWork();
             refreshPrioritizeGoalsList()
         }
-    }else if (refreshfunction =="task") {
+    }else if (refreshconst =="=task") {
         move_down.onclick = () => {
             moveItem(index,array.length,array); 
             saveWork();
@@ -547,7 +568,7 @@ function moveDown_arrow_onClick(move_down,index,array,refreshfunction){
 
 
 
-function checkbox(element,goal,index,array,refresh="task",showArch){
+const checkbox=(element,goal,index,array,refresh="task",showArch)=>{
 
     let checkbox = document.createElement('input')
     checkbox.setAttribute("type","checkbox")
@@ -584,7 +605,7 @@ function checkbox(element,goal,index,array,refresh="task",showArch){
 }
 
 
-function makefullscreen(){
+const makefullscreen=()=>{
   if (wholedoc.requestFullscreen) {
     wholedoc.requestFullscreen();
   } else if (wholedoc.webkitRequestFullscreen) { /* Safari */
@@ -593,65 +614,3 @@ function makefullscreen(){
     wholedoc.msRequestFullscreen();
   }
 }
-
-// async function addTagToManicTime(tagName,notes,startTime,duration,token,manictimeserverurl){
-//     if (startTime == 'now'){
-//         startTime = new Date()
-//         startTime.setHours(startTime.getHours()+12)
-        
-//     }
-//     const myHeaders = new Headers();
-//     myHeaders.append('Accept', 'application/vnd.manictime.v2+json')
-//     myHeaders.append('Authorization', `Bearer ${token}`)
-    
-//     let tags_timeline_id = ''
-    
-//     const rawResponse1 = await fetch(`${manictimeserverurl}/api/timelines`,headers=myHeaders) 
-//     console.log(rawResponse1)
-//     let timelines = await rawResponse1.json()
-//     console.log(timelines.timelines)
-//     timelines.timelines.forEach(timeline =>{
-
-//         if (timeline.schema.name == "ManicTime/Tags"){
-            
-//             tags_timeline_id = timeline.timelineKey
-//         }
-//     })
-
-    
-
-
-    
-    
-//     let post_json = {
-    
-//         "values": {
-//             "name": tagName,
-//             "notes": notes,
-//             "timeInterval": {
-//                 "start": startTime,
-//                 "duration": duration
-//             }
-//         }
-//     }
-//     let headers1 = {
-//         'Accept': 'application/vnd.manictime.v3+json',
-//         'Content-Type': 'application/vnd.manictime.v3+json',
-//         'Authorization': `Bearer ${token}`,
-//     }
-//     // headers = JSON.stringify(headers1)
-//     console.log('passed')
-//     const rawResponse2 = await fetch(`${manictimeserverurl}/api/timelines/${tags_timeline_id}/activities`, {
-//         method : 'POST',
-//         headers:headers1,
-//         body:JSON.stringify(post_json)
-//     })
-//     console.log('passed')
-
-//     const content = await rawResponse2.json();
-//     console.log('passed')
-
-//     console.log(content);
-//     console.log('passed')
-    
-// }
