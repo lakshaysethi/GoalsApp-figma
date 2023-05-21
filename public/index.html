@@ -22,7 +22,7 @@
     <nav class="sidenav" id="mySidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <a id='my-goals-nav-link' href="javascript:void(0)" onclick="showSetGoalsScreen();  closeNav() ">My Goals</a>
-        <a id='my-goals-nav-link' href="javascript:void(0)" onclick="showPrioritizeSection();  closeNav() ">prioritize
+        <a id='my-goals-nav-link2' href="javascript:void(0)" onclick="showPrioritizeSection();  closeNav() ">prioritize
             my goals</a>
         <a href="javascript:void(0)" onclick="showSetGoalsScreen(1);  closeNav() ">My Archieved Goals</a>
         <a href="javascript:void(0)" onclick="saveWork();  closeNav() ">Save Data</a>
@@ -63,7 +63,7 @@
     <div style="display: none;" id="make-list-of-goals">
         <div>Start with making a list of your goals / what do you want to do? / what do you want to invest your time in?
         </div>
-        <input id="goal-input" type="text" placeholder="I want to...">
+        <input id="goal-input" type="text" placeholder="I want to..." label="goal input">
         <div id="suggest-holder"></div>
         <button id="set-goal-continue-btn">Continue</button>
         <div id="goals-list-holder">
@@ -117,7 +117,7 @@
             login_user(googleUser)
         }
     </script>
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="https://accounts.google.com/gsi/client" ></script>
 
 </body>
 

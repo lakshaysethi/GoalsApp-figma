@@ -29,11 +29,9 @@ const loginUserWithGoogle=(firebase=0)=>{
 }
 
 const login_user = (googleUser) => {
+    console.log(googleUser)
     user_auth_data.user_is_logged_in = true
-    user_auth_data.user_name = googleUser.getBasicProfile().getName()
-    user_auth_data.user_email = googleUser.getBasicProfile().getEmail()
-    user_auth_data.user_image_url = googleUser.getBasicProfile().getImageUrl()
-    user_auth_data.user_unique_key = googleUser.getBasicProfile().getId()
+    
     loginUserWithGoogle()
     showUserProfileButton()
 

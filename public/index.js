@@ -17,7 +17,7 @@ if (!user_auth_data.user_is_logged_in){
     showSetGoalsScreen()
 }
 
-login_button.addEventListener('click',()=>{
+login_button_offline.addEventListener('click',()=>{
     loginUserWithGoogle(0)
 })
 
