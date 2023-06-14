@@ -14,7 +14,7 @@ class Goal{
 let syncallowed = true //its 20k per day not month bro! 
 
 let main_goals_array = []
-const login_button = document.getElementById('login-with-google')
+const login_button = document.getElementById('offline-login')
 let user_auth_data ={
     'user_is_logged_in' : false,
     'user_name':"",
