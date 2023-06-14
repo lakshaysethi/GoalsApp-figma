@@ -12,7 +12,7 @@ function archieve_or_un_all(archive_all=true){
     showSetGoalsScreen()
 }
 
-function loginUserWithGoogle(firebase=1){
+function loginUserOffline(firebase=1){
         
     if (firebase){
         if (user_auth_data.user_is_logged_in){
